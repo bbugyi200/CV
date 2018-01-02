@@ -1,0 +1,192 @@
+%!TEX TS-program = xelatex
+\documentclass[]{friggeri-cv}
+\addbibresource{bibliography.bib}
+
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{enumitem}
+
+\setitemize{itemsep=3pt}
+
+\graphicspath{{images/}}
+
+\newlength\myheight
+\newlength\mydepth
+\settototalheight\myheight{Xygp}
+\settodepth\mydepth{Xygp}
+\setlength\fboxsep{0pt}
+\newcommand*\inlinegraphics[2]{%
+  \settototalheight\myheight{Xygp}%
+  \settodepth\mydepth{Xygp}%
+  \raisebox{-\mydepth}{\includegraphics[height=\myheight+#2pt]{#1}}%
+}
+
+\begin{document}
+\header{bryan}{bugyi}
+       % {student of computing and A.I. enthusiast}
+       {student of computing,\hspace{.08em} A.I. enthusiast,\hspace{.08em} dreamer...}
+        % {computer science student}
+
+
+% In the aside, each new line forces a line break
+\begin{aside}
+  \section{contact}
+    (609)500-7081
+    \href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail}
+  \section{web}
+    \href{https://github.com/bbugyi200}{github://bbugyi200}
+    \href{http://bryanbugyi.com}{bryanbugyi.com}
+    \href{http://facebook.com/bryan.bugyi}{fb://bryan.bugyi}
+  \section{certifications}
+    % \href{http://www.google.com}{\includegraphics{Aplus.jpg}}%
+    \href{https://certification.comptia.org/certifications/a}{\XeTeXLinkBox{\inlinegraphics{Aplus.jpg}{25}}}%
+    \href{https://certification.comptia.org/certifications/network}{\XeTeXLinkBox{\inlinegraphics{Netplus.jpg}{25}}}%
+    \href{http://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna-routing-switching.html}{\XeTeXLinkBox{\inlinegraphics{ccna.jpg}{16}}}
+  \section{programming}
+    \inlinegraphics{heart.jpg}{5} Python
+    C/C++
+    MATLAB
+    HTML \& CSS
+ \section{my toolbox}
+	Linux
+	Vim
+	\LaTeX
+	Git
+	SQL
+\end{aside}
+
+\section{interests}
+\begin{description}
+% \large$\alpha$}\hspace{.25em}
+    \addtolength\itemsep{0.25em}
+    \item[Artificial Intelligence] artificial general intelligence, machine learning, neural networks, robotics, planning and scheduling, knowledge representation, search and optimization
+    \item[Mathematics] probability theory, combinatorics, algorithms and complexity theory, graph theory, matrix theory, proof theory, symbolic logic, set theory
+    \item[Cognitive Science] memory and learning, perception, reasoning, productivity 
+    % \item[Economics] entrepreneurial economics, utility theory, game theory, decision theory
+    \item[Philosophy] epistemology, logic, and value theory
+\end{description}
+
+\section{education}
+
+\begin{entrylist}
+  \entry
+	{since 2017}
+	{Bachelor of Science (BS)}
+	{Rutgers University, New Brunswick}
+	{Computer Science and Mathematics}
+  \entry
+    {2015-2017}
+    {Associate of Science (AS)}
+    {Rowan College at Burlington County}
+    {Computer Science}
+  \entry
+    {2010-2011}
+    {Vocational Degree}
+    {Anthem Institute, Cherry Hill, NJ}
+    {Computer Networking \& Security}
+  \entry
+    {2005-2009}
+    {High School Diploma}
+    {RVRHS, Mount Holly, NJ}
+    {}
+\end{entrylist}
+
+\section{experience}
+
+\begin{entrylist}
+  \entry
+    {2015-2016}
+    {Comcast Cable}
+    {Mount Laurel, NJ}
+    {Tier III Technical Support}
+  \entry
+    {2013-2015}
+    {Comcast Cable}
+    {Mount Laurel, NJ}
+    {Tier II Technical Support}
+  \entry
+    {2011-2013}
+    {Comcast Cable}
+    {Voorhees, NJ}
+    {Tier I Technical Support}
+\end{entrylist}
+
+\section{activities}
+    \begin{entrylist}
+        \entry
+        {Fall 2016}
+        {Undergraduate Research in Mathematics}
+        {Advised by Professor Weisbrod}
+        {%
+            \vspace{-0.3cm}%
+            \begin{itemize}[leftmargin=5pt]%
+                \item Considered various mathematical approaches to solving the problems that arose when attempting to design an agent that could successfully navigate Stuart Russell and Peter Norvig's Wumpus World environment%
+                \item Explored solutions from several diverse fields of mathematical study including graph theory, probability theory, linear algebra, and matrix theory%
+            \end{itemize}%
+        }
+    \end{entrylist}
+    \begin{entrylist}
+        \entry
+        {Spring 2016}
+        {Undergraduate Research in Mathematics}
+        {Advised by Professor Weisbrod}
+        {%
+            \vspace{-0.3cm}
+            \begin{itemize}[leftmargin=5pt]%
+                \item Read, discussed, summarized, and worked problem sets from Gary Chartrand's \emph{Mathematical Proofs: A Transition to Advanced Mathematics}%
+                \item All assignments were submitted in \LaTeX%
+            \end{itemize}%
+        }
+    \end{entrylist}
+    \begin{entrylist}
+        \entry
+        {Spring 2016}
+        {Garden State Undergraduate Mathematics Conference}
+        {\href{http://sections.maa.org/newjersey/GSUMC/schedule.htm}{maa.org/newjersey}}
+        {%
+        \vspace{-0.3cm}%
+        \begin{itemize}[leftmargin=5pt]%
+            \item \mbox{Participated in Annual New Jersey Undergraduate Math Competition} (\href{http://www.rcbc.edu/news/rowan-college-burlington-county-top-two-year-school-statewide-mathematics-competition}{rcbc.edu/news})%
+            \item Attended several student talks in addition to Professor Eugene Fiorini's talk on \emph{Criminal Investigation Through Mathematical Examination}
+        \end{itemize}%
+        }
+    \end{entrylist}
+
+\section{projects}
+    \begin{entrylist}
+        \entry
+          {2016}
+          {Wumpus World Environment \inlinegraphics{python.png}{2}}
+          {\href{http://github.com/bbugyi200/wumpusworld}{bbugyi200/WumpusWorld}}
+          {An attempt at designing an agent that can logically navigate the environment described by Stuart Russell and Peter Norvig in their conjointly authored text, \emph{Artificial Intelligence: A Modern Approach}}
+        \entry
+          {2016}
+          {The Short Run Returns of Studying \inlinegraphics{matlab.jpeg}{0}}
+          {\href{http://github.com/bbugyi200/UtilFunc4Studying}{bbugyi200/UtilFunc4Studying}}
+          {A conjecture on how the short run returns of studying could be modeled using an appropriate utility function}
+        \entry
+          {2016}
+          {IntelliBudget \inlinegraphics{python.png}{2}\inlinegraphics{sql.png}{0}}
+          {\href{https://github.com/bbugyi200/IntelliBudget}{bbugyi200/IntelliBudget}}
+          {A platform independent personal budgeting application complete with a graphical user interface (implemented using Python's Tkinter library) and an SQL database designed to store user expense data}
+        \entry
+          {2016}
+          {Personal Website \inlinegraphics{python.png}{2} \inlinegraphics{html.png}{0} \inlinegraphics{css.jpg}{0}}
+          {\href{http://bryanbugyi.com}{bryanbugyi.com}}
+          {Designed using HTML, CSS, and Python's Flask web framework}
+    \end{entrylist}
+
+%%% This piece of code has been commented by Karol Kozioł due to biblatex errors. 
+% 
+%\printbibsection{article}{article in peer-reviewed journal}
+%\begin{refsection}
+%  \nocite{*}
+%  \printbibliography[sorting=chronological, type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=subbibliography]
+%\end{refsection}
+%\begin{refsection}
+%  \nocite{*}
+%  \printbibliography[sorting=chronological, type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=subbibliography]
+%\end{refsection}
+%\printbibsection{misc}{other publications}
+%\printbibsection{report}{research reports}
+\end{document}
