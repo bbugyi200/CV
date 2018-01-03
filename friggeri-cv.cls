@@ -8,59 +8,45 @@
 \ProcessOptions\relax
 \LoadClass{article}
 
-
 %%%%%%%%%%
 % Colors %
 %%%%%%%%%%
 
 \RequirePackage{xcolor}
 
-\definecolor{white}{RGB}{255,255,255}
-
 \definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{4D4D4D}
+\definecolor{gray}{HTML}{4C4C4C}
+\definecolor{silver}{HTML}{808080}
 \definecolor{lightgray}{HTML}{999999}
+\definecolor{white}{HTML}{FFFFFF}
 
 \definecolor{green}{HTML}{C2E15F}
 \definecolor{orange}{HTML}{FDA333}
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{wine}{HTML}{A2033c}
 
 \ifdefined\@cv@print
-  \colorlet{green}{gray}
-  \colorlet{orange}{gray}
-  \colorlet{purple}{gray}
-  \colorlet{red}{gray}
-  \colorlet{blue}{gray}
-  \colorlet{fillheader}{white}
-  \colorlet{header}{gray}
+  \colorlet{green}{darkgray}
+  \colorlet{orange}{darkgray}
+  \colorlet{purple}{darkgray}
+  \colorlet{red}{darkgray}
+  \colorlet{blue}{darkgray}
+  \colorlet{filltitle}{white}
+  \colorlet{title}{darkgray}
 \else
-  \colorlet{fillheader}{gray}
-  \colorlet{header}{white}
+  \colorlet{filltitle}{darkgray}
+  \colorlet{title}{white}
 \fi
-\colorlet{textcolor}{gray}
-\colorlet{headercolor}{gray}
+\colorlet{textcolor}{darkgray}
+\colorlet{headercolor}{darkgray}
 
 %%%%%%%%%
 % Fonts %
 %%%%%%%%%
 
-% \RequirePackage[quiet]{fontspec}
-% \RequirePackage{unicode-math}
-% 
-% \newfontfamily\bodyfont[]{Helvetica Neue}
-% \newfontfamily\thinfont[]{Helvetica Neue UltraLight}
-% \newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
-% 
-% \defaultfontfeatures{Mapping=tex-text}
-% \setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
-% 
-% \setmathfont{XITS Math}
-
-%%% modified by Karol Kozioł for ShareLaTex use
 \RequirePackage[quiet]{fontspec}
-\RequirePackage{unicode-math}
 
 \newfontfamily\bodyfont
 [BoldFont=texgyreheros-bold.otf,
@@ -79,8 +65,6 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 ]
 {texgyreheros-regular.otf}
 
-\setmathfont{texgyreheros-regular.otf}
-%%%
 
 %%%%%%%%%%
 % Header %
@@ -90,19 +74,19 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 
 \newcommand{\rolefont}{%
   \fontsize{14pt}{24pt}\selectfont%
-  \thinfont%
+  \titlefont%
   \color{white}%
 }
 
 \newcommand{\header}[3]{%
   \begin{tikzpicture}[remember picture,overlay]
-    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
+    \node [rectangle, fill=filltitle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
     \node [anchor=center] (name) at (box) {%
-      \fontsize{40pt}{72pt}\color{header}%
+      \fontsize{40pt}{72pt}\color{title}%
       {\thinfont #1}{\bodyfont  #2}
     };
     \node [anchor=north] at (name.south) {%
-      \fontsize{14pt}{24pt}\color{header}%
+      \fontsize{14pt}{24pt}\color{title}%
       \thinfont #3%
     };
   \end{tikzpicture}
@@ -110,6 +94,20 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \vspace{-2\parskip}
 }
 
+% \newcommand{\header}[2]{%
+  % \begin{tikzpicture}[remember picture,overlay]
+    % \node [rectangle, fill=filltitle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
+    % \node [anchor=center] (name) at (box) {%
+      % \fontsize{36pt}{48pt}\color{title}\scshape #1%
+    % };
+    % \node [anchor=north] at (name.south) {%
+      % \fontsize{14pt}{24pt}\color{title}%
+      % \titlefont #2%
+    % };
+  % \end{tikzpicture}
+  % \vspace{2.5cm}
+  % \vspace{-2\parskip}
+% }
 
 %%%%%%%%%%%%%
 % Structure %
@@ -141,37 +139,50 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \par\vspace{\parskip}
 }
 
-\renewcommand{\subsection}[1]{
+\renewcommand{\subsection}[2]{
   \par\vspace{.5\parskip}%
-  {%
-  \large\headingfont\color{headercolor} #1%
-  }
+  \Large\headingfont\color{headercolor} #2%
   \par\vspace{.25\parskip}%
 }
 
 \pagestyle{empty}
 
+\RequirePackage{enumitem}
+\setitemize{noitemsep, leftmargin=\parindent, labelindent=\parindent}
 
 %%%%%%%%%%%%%%%%%%%%
 % List environment %
 %%%%%%%%%%%%%%%%%%%%
-\RequirePackage{xifthen}
+
+\RequirePackage{longtable}
+\RequirePackage{tabu}
 
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+  \begin{longtabu} to \textwidth {@{\extracolsep{\fill}}ll}
 }{%
-  \end{tabular*}
+  \end{longtabu}
 }
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
   #1&\parbox[t]{11.8cm}{%
     \textbf{#2}%
     \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #3}%
-    \ifthenelse{\isempty{#4}}{}{\\#4}\vspace{\parsep}%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+    #4\vspace{\parsep}%
   }\\}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple list environment %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\simpleentry}[3]{%
+  #1&\parbox[t]{11.8cm}{%
+    #2%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}%
+    \vspace{\parsep}%
+  }\\}
 
 %%%%%%%%%%%%%%
 % Side block %
@@ -188,8 +199,7 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \begin{textblock}{3.6}(1.5, 4.33)
   \begin{flushright}
   \obeycr
-}
-{%
+}{%
   \restorecr
   \end{flushright}
   \end{textblock}
@@ -200,12 +210,16 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[style=verbose, maxnames=99, backend=biber]{biblatex}
+\setlength\bibhang{0pt}
 
 \DeclareFieldFormat[article]{title}{#1\par}
+\DeclareFieldFormat[book]{title}{#1\par}
 \DeclareFieldFormat[inproceedings]{title}{#1\par}
 \DeclareFieldFormat[misc]{title}{#1\par}
 \DeclareFieldFormat[report]{title}{#1\par}
+
+\def\newblock{\hskip 0pt plus 0pt minus 0pt}
 
 \DeclareBibliographyDriver{article}{%
   \printfield{title}%
@@ -221,7 +235,27 @@ BoldItalicFont=texgyreheros-bolditalic.otf
     \newunit%
     \printlist{publisher}%
     \setunit*{\addcomma\space}%
+    \textcolor{lightgray}{\printfield{doi}}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
+\DeclareBibliographyDriver{book}{%
+  \printfield{title}%
+  \newblock%
+  \printnames{author}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printlist{publisher}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+    \setunit*{\addcomma\space}%
     \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printlist{location}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -283,9 +317,13 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \par\vspace{0.3\baselineskip}
 }
 
+% biblatex name formatting changed with version 3.3.
+% After this change the line "\ifblank{#3}{}{#3\space}#1%" gives an error.
+% See also: http://tex.stackexchange.com/questions/327316/updating-friggeris-cv-making-it-work-with-texlive-2015-and-up-too-many-erro
+
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \ifblank{#3}{}{#3\space}#1%
+  \nameparts{#1}\ifblank{\namepartgiven}{}{\namepartgiven\space}\namepartfamily%
   \ifthenelse{\value{listcount}<\value{liststop}}
     {\addcomma\space}
     {}%
@@ -294,7 +332,8 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 \newcommand{\printbibsection}[2]{
   \begin{refsection}
     \nocite{*}
-    \printbibliography[sorting=chronological, type={#1}, title={#2}, heading=subbibliography]
+    \newrefcontext[sorting=chronological]
+    \printbibliography[type={#1}, title={#2}, heading=subbibliography]
   \end{refsection}
 }
 
@@ -303,11 +342,10 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \sort[direction=descending]{\field{month}}
 }
 
-
-
 %%%%%%%%%%%%%%%%
 % Other tweaks %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
+\RequirePackage[left=6.1cm, top=2cm, right=1.5cm, bottom=2.5cm, nohead, nofoot]{geometry}
 \RequirePackage[hidelinks]{hyperref}
+\RequirePackage{microtype}
