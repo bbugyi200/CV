@@ -82,7 +82,7 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \begin{tikzpicture}[remember picture,overlay]
     \node [rectangle, fill=filltitle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
     \node [anchor=center] (name) at (box) {%
-      \fontsize{40pt}{72pt}\color{title}%
+      \fontsize{50pt}{72pt}\color{title}%
       {\thinfont #1}{\bodyfont  #2}
     };
     \node [anchor=north] at (name.south) {%
@@ -93,21 +93,6 @@ BoldItalicFont=texgyreheros-bolditalic.otf
   \vspace{2.5cm}
   \vspace{-2\parskip}
 }
-
-% \newcommand{\header}[2]{%
-  % \begin{tikzpicture}[remember picture,overlay]
-    % \node [rectangle, fill=filltitle, anchor=north, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.north){};
-    % \node [anchor=center] (name) at (box) {%
-      % \fontsize{36pt}{48pt}\color{title}\scshape #1%
-    % };
-    % \node [anchor=north] at (name.south) {%
-      % \fontsize{14pt}{24pt}\color{title}%
-      % \titlefont #2%
-    % };
-  % \end{tikzpicture}
-  % \vspace{2.5cm}
-  % \vspace{-2\parskip}
-% }
 
 %%%%%%%%%%%%%
 % Structure %
@@ -131,12 +116,12 @@ BoldItalicFont=texgyreheros-bolditalic.otf
 }
 
 \renewcommand{\section}[1]{
-  \par\vspace{\parskip}
+  \par\vspace{0.5\parskip}
   {%
     \LARGE\headingfont\color{headercolor}%
     \@sectioncolor #1%
   }
-  \par\vspace{\parskip}
+  \par\vspace{0.25\parskip}
 }
 
 \renewcommand{\subsection}[2]{
