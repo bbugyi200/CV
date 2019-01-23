@@ -14,7 +14,20 @@
 \usepackage{tocloft}
 \usepackage{etoolbox}
 \usepackage{hyperref}
+\usepackage{xparse}
+
 \robustify\cftdotfill
+
+\makeatletter
+\newcommand*{\declarecommand}{%
+    \@star@or@long\declare@command
+}
+\newcommand*{\declare@command}[1]{%
+    \provide@command{#1}{}%
+    % \let#1\@empty % would be more efficient, but without error checking
+    \RenewDocumentCommand{#1}%
+}
+\makeatother
 
 \hypersetup{
     colorlinks=false,
@@ -102,28 +115,55 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Open Source Projects {\mdseries(github.com/bbugyi200)}}
+\resheading{Open Source (GitHub) Projects}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{itemize}
-\item \ressubheading{cookie}{Shell}{A Template-based File Generator.}{2017 - Current}
-\item \ressubheading{funky}{Python, Shell}{Create per-directory local aliases in zsh!}{2017 - Current}
-\item \ressubheading{ProtectMyLaptop}{Python, Shell}{Security Monitoring Program for your Laptop}{2017 - Current}
-\item \ressubheading{SlackRU}{Python, SQL}{Slackbot used for Rutgers HackRU Hackathon \mdseries{(github.com/HackRU)}}{2017 - 2018}
-\item \ressubheading{WumpusWorld}{Python}{Autonomous Agent which navigates through Wumpus World}{2016 - 2017}
-\item \ressubheading{IntelliBudget}{Python, SQL}{A Platform Independent Personal Budgeting Application}{2015 - 2016}
+\item \ressubheading{bbugyi200/cookie}{Shell}{A Template-based File Generator.}{2018 - Current}
+    \begin{itemize}
+        \item
+            Multiple outside contributions have been made.
+        \item
+            Over 150 stars on GitHub.
+    \end{itemize}
+\item \ressubheading{bbugyi200/funky}{Python, Shell}{Create per-directory local aliases in zsh.}{2017-Current}
+    \begin{itemize}
+        \item
+            Multiple outside contributions have been made.
+        \item
+            Over 300 stars on GitHub.
+    \end{itemize}
+\item \ressubheading{GermainZ/weechat-vimode}{Python}{A WeeChat script that adds vi-like modes, commands and keybindings.}{2017 - 2018}
+    \begin{itemize}
+        \item
+            Made several non-trivial contributions to this project. My most significant contribution was a parser used to emulate vim's \texttt{:nmap} command ($\sim$500 lines of code).
+    \end{itemize}
+\item \ressubheading{HackRU/SlackRU}{Python, SQL}{Slackbot used for Rutgers HackRU Hackathon.}{2018}
+    \begin{itemize}
+        \item
+            Used by hundreds of students at Rutger's 2018 HackRU Hackathon.
+        \item
+            Implemented using Slack's API and Python's Flask Web Framework (hosted on an AWS Elastic Beanstalk).
+    \end{itemize}
+\item \ressubheading{bbugyi200/WumpusWorld}{Python}{Autonomous Agent which navigates through Wumpus World.}{2016 - 2017}
+    \begin{itemize}
+        \item
+            I presented a poster on this project at the 2017 Garden State Undergraduate Mathematics Conference (GSUMC).
+    \end{itemize}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Activities}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{itemize}
+    \item
+        \ressubheading{bryanbugyi.com}{}{My Personal Tech/Programming Blog.}{2018-Current}
     \item 
-        \ressubheading{HackRU Architect Team}{}{We Build Tools for HackRU (Rutgers Hackathon)}{2017-2018}
+        \ressubheading{HackRU Architect Team}{}{We Build Tools for HackRU (Rutgers Hackathon).}{2017-2018}
     \item
-        \ressubheading{USACS Mentorship Program}{}{Mentor for CS Underclassmen}{2017-2018}
+        \ressubheading{USACS Mentorship Program}{}{Mentor for CS Underclassmen.}{2017-2018}
     \item
-        \ressubheading{Undergraduate Research in Mathematics}{}{Advised by Professor Jonathan Weisbrod}{2017-2018}
+        \ressubheading{Undergraduate Research in Mathematics}{}{Advised by Professor Jonathan Weisbrod.}{2017-2018}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,7 +187,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
                 \textsc{Javascript}: 1
         \end{itemize}
 
-\item {\bf Technologies:} Linux, SQL, \LaTeX, git, vim, tmux
+\item {\bf Technologies:} Linux, SQL, \LaTeX, HTML/CSS, git, Flask, AWS, TravisCI
 \end{itemize}
 
 \end{document}
