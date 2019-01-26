@@ -4,9 +4,7 @@
 %
 %This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 2.5 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/2.5/ or send a letter to Creative Commons, 543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  HEADER                                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Header Declarations
 \documentclass[letterpaper,11pt]{article}
 \usepackage{etoolbox}
 \usepackage{framed}
@@ -15,9 +13,7 @@
 
 \input{/home/bryan/Dropbox/lib/latex/gutils.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  STYLE                                                  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style Settings
 \newlength{\outerbordwidth}
 \pagestyle{empty}
 \raggedbottom
@@ -49,9 +45,7 @@
 \setlength{\voffset}{0.1in}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  CUSTOM COMMANDS                                        %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands
 \newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
 \newcommand{\resheading}[1]{\vspace{8pt}
   \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
@@ -67,6 +61,7 @@
 \end{tabular*}\vspace{-6pt}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Start of CV
 \begin{document}
 
 \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
@@ -88,24 +83,10 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \resheading{Education}
 \begin{itemize}
 \item
-    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science, B.S. Mathematics (3.80 GPA)}{2017 - 2019}
+    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science, B.A. Mathematics (3.80 GPA)}{2017 - 2019}
 
 \item
     \ressubheading{Rowan College at Burlington County}{Mount Laurel, NJ}{A.S. Computer Science (4.0 GPA)}{2015 - 2017}
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  INDUSTRY EXPERIENCE                                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Industry Experience}
-\begin{itemize}
-\item
-	\ressubheading{Comcast Cable}{Mount Laurel, NJ}{Tier III Technical Support}{2011 - 2016}
-	\begin{itemize}
-            \resitem{Monitored for large-scale network outages.}
-            \resitem{Tracked and reported network outages using Jira ticketing system.}
-            \resitem{Provided support and guidance to Tier II Technical Support representatives.}
-	\end{itemize}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -121,7 +102,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
         \item
             Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
     \end{itemize}
-\item \ressubheading{bbugyi200/funky}{Python, Shell}{Create per-directory local aliases in zsh.}{2017 - Current}
+\item \ressubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017 - Current}
     \begin{itemize}
         \item
             Well received by the developer community (over 300 stars on GitHub).
@@ -153,7 +134,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \resheading{Activities}
 \begin{itemize}
     \item
-        \ressubheading{bryanbugyi.com}{}{My Personal Tech/Programming Blog.}{2018 - Current}
+        \ressubheading{bryanbugyi.com}{}{My Personal Technology/Programming Blog.}{2018 - Current}
     \item 
         \ressubheading{HackRU Architect Team}{}{We Build Tools for HackRU (Rutgers Hackathon).}{2017 - 2018}
     \item
@@ -163,48 +144,62 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  INDUSTRY EXPERIENCE                                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Industry Experience}
+\begin{itemize}
+\item
+	\ressubheading{Comcast Cable}{Mount Laurel, NJ}{Tier III Technical Support}{2011 - 2016}
+	\begin{itemize}
+            \resitem{Monitored for large-scale network outages.}
+            \resitem{Tracked and reported network outages using Jira ticketing system.}
+            \resitem{Provided support and guidance to Tier II Technical Support representatives.}
+	\end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  SKILLS                                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Skills}
 \begin{itemize}
-    \item {\bf Languages:}\\
-        I have assigned each of the programming languages listed below a rank between 1-3 to indicate my level of proficiency with that language. A rank of 1 indicates that I have taken a college course that made use of the language and/or have read a book about the language. A rank of 2 indicates that I have also written over 5000 lines of code in the language. And a rank of 3 indicates that I have also written over 30000 lines of code in the language.\\\vspace{0.2cm}
-        \textit{\uline{Programming Languages}}\\
+    \declarecommand{\sub}{m}{\item {\bf #1:}}
+    \declarecommand{\ssub}{m}{\textit{\uline{#1}}\\}
+
+    \sub{Languages}\\
+        I have assigned each of the languages listed below a rank between 1-3 to indicate my level of proficiency with that language. A rank of 1 indicates that I have taken a college course that made use of the language and/or have read a book about the language. A rank of 2 indicates that I have also written over 5000 lines of code in the language. And a rank of 3 indicates that I have also written over 30000 lines of code in the language.\\\vspace{0.2cm}
+
+        \declarecommand{\lang}{m m}{\item \textsc{#1}: #2}
+
+        \ssub{Programming Languages}
         \begin{itemize}
-            \item
-                \textsc{Python}: 3
-            \item
-                \textsc{C/C++}: 2
-            \item
-                \textsc{Shell}: 2
-            \item
-                \textsc{Java}: 1
-            \item
-                \textsc{Haskell}: 1
-            \item
-                \textsc{Javascript}: 1
+            \lang{Python}{3}
+            \lang{C/C++}{2}
+            \lang{Shell}{2}
+            \lang{Java}{1}
+            \lang{Haskell}{1}
+            \lang{Javascript}{1}
+            \lang{MATLAB}{1}
         \end{itemize}
 
-        \textit{\uline{Markup / Domain-Specific Languages}}\\
+        \ssub{Markup / Domain-Specific Languages}
         (The rank requirements are relaxed a bit in this section.)
         \begin{itemize}
-            \item
-                \LaTeX: 3
-            \item
-                \textsc{SQL}: 2
-            \item
-                \textsc{AWK}: 2
-            \item
-                \textsc{Vimscript}: 2
-            \item
-                \textsc{HTML/CSS}: 1
+            \lang{\LaTeX}{3}
+            \lang{SQL}{2}
+            \lang{AWK}{2}
+            \lang{Vimscript}{2}
+            \lang{HTML/CSS}{1}
         \end{itemize}
 
-    \item {\bf Technologies:} Flask, AWS, TravisCI, git, vim, tmux
+    \sub{Linux}
+    \begin{itemize}
+        \item I have used Linux exclusively on my desktop (which currently runs Gentoo) and laptop (which currently runs Debian Stable) for over 5 years.
+        \item I have experience configuring and compiling the Linux kernel and aspire to one day make contributions to the kernel's source code.
+        \item I am very proficient with the Bash scripting language.
+        \item My favorite courses in college were ``Systems Programming'' and ``Operating Systems'', both of which well prepared me for programming in a Unix environment.
+    \end{itemize}
 
-    \item {\bf Linux:}
-
-    \item {\bf Networking:}
+    \sub{Technologies} Flask, AWS, TravisCI, git, vim, tmux
 \end{itemize}
 
 \end{document}
