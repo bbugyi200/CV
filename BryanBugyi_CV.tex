@@ -12,7 +12,7 @@
 \usepackage{hyperref}
 \usepackage[svgnames]{xcolor}
 
-\input{/home/bryan/Dropbox/lib/latex/gutils.tex}
+\input{/home/bryan/Sync/lib/latex/gutils.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style Settings
 \newlength{\outerbordwidth}
@@ -76,7 +76,7 @@ Software Engineer & bryanbugyi34@gmail.com \\
 %  SUMMARY                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Summary}
-Student of Computer Science and Mathematics at Rutgers University, New Brunswick. Dedicated to writing clean, efficient code using best software development practices.
+Software Engineer at Edgestream Partners, L.P. in Princeton, NJ where I was hired to maintain and improve the company's large pre-existing codebase (Python and C/C++).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  EDUCATION                                              %
@@ -84,12 +84,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \resheading{Education}
 \begin{itemize}
 \item
-    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science, B.A. Mathematics (3.63 GPA)}{2017 - 2019}
-
-\item
-    \ressubheading{Rowan College at Burlington County}{Mount Laurel, NJ}{A.S. Computer Science (4.0 GPA)}{2015 - 2017}
-\item
-    \ressubheading{Anthem Institute of Technology}{Cherry Hill, NJ}{Vocational Degree \textendash{} Computer Networking, Security, and Repair (3.58 GPA)}{2010 - 2011}
+    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science w/ minor in Mathematics}{2015 - 2019}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -98,10 +93,19 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \resheading{Open Source (GitHub) Projects}
 
 \begin{itemize}
+    \item \ressubheading{psf/black}{Python}{The uncompromising Python code formatter.}{November 2019 - March 2020}
+    \begin{itemize}
+        \item
+            Improved the way black handles strings (https://github.com/psf/black/pull/1132).
+        \item
+            Non-trivial contribution consisting of $\sim$3,500 lines of code additions/modifications.
+        \item
+            Led to the closing of five unrelated GitHub issues (opened by five different developers at different times).
+    \end{itemize}
 \item \ressubheading{bbugyi200/cookie}{Shell}{A Template-based File Generator.}{2018 - Current}
     \begin{itemize}
         \item
-            Well received by the developer community (over 150 stars on GitHub).
+            Well received by the developer community (over 200 stars on GitHub).
         \item
             Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
     \end{itemize}
@@ -117,33 +121,6 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
         \item
             Made several non-trivial contributions to this project. My most significant contribution was a parser that I wrote which was used to replicate vim's \texttt{:nmap} command ($\sim$500 lines of code).
     \end{itemize}
-\item \ressubheading{HackRU/SlackRU}{Python, SQL}{Slackbot used for Rutgers HackRU Hackathon.}{2018}
-    \begin{itemize}
-        \item
-            Used by hundreds of students at Rutger's 2018 HackRU Hackathon.
-        \item
-            Implemented using Slack's API and Python's Flask Web Framework (hosted on an AWS Elastic Beanstalk).
-    \end{itemize}
-\item \ressubheading{bbugyi200/WumpusWorld}{Python}{Autonomous Agent which navigates through Wumpus World.}{2016 - 2017}
-    \begin{itemize}
-        \item
-            I presented a poster on this project at the 2017 Garden State Undergraduate Mathematics Conference (GSUMC).
-    \end{itemize}
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  ACTIVITIES                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Activities}
-\begin{itemize}
-    \item
-        \ressubheading{bryanbugyi.com}{}{My Personal Technology/Programming Blog.}{2018 - Current}
-    \item 
-        \ressubheading{HackRU Architect Team}{}{We Build Tools for HackRU (Rutgers Hackathon).}{2017 - 2018}
-    \item
-        \ressubheading{USACS Mentorship Program}{}{Mentor for CS Underclassmen.}{2017 - 2018}
-    \item
-        \ressubheading{Undergraduate Research in Mathematics}{}{Advised by Professor Jonathan Weisbrod.}{2017 - 2018}
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,11 +129,12 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
 \resheading{Industry Experience}
 \begin{itemize}
 \item
-	\ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 - 2016}
+	\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 - Current}
 	\begin{itemize}
-            \resitem{Monitored for large-scale network outages.}
-            \resitem{Tracked and reported network outages using ticketing system.}
-            \resitem{Developed Python scripts to automate frequent department tasks (e.g. parsing spreadsheets, opening/closing tickets, information retrieval).} 
+            \resitem{Integrated pylint into a codebase with well over a million lines of existing code that has been accumulated by Edgestream over the last 20 years. As the lead on this project, I was responsible for building several non-trivial tools to aid in making this integration a success.}
+            \resitem{Lead developer of Edgestream's investor-facing web portal, which was built using Python's Django web framework.}
+            \resitem{Worked closely with the Accounting department, where my role was to automate many of the data-related (e.g. data entry/download/upload) tasks that previously had to be performed manually each day.}
+            \resitem{Made several large-scale improvements to the production department's in-house testing framework/runner, which greatly improved the team's testing practices.}
 	\end{itemize}
 \end{itemize}
 
@@ -169,7 +147,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
     \declarecommand{\ssub}{m}{\textit{\uline{#1}}\\}
 
     \sub{Languages}\\
-        I have assigned each of the languages listed below a rank between 1-3 to indicate my level of proficiency with that language. A rank of 1 indicates that I have taken a college course that made use of the language and/or have read a book about the language. A rank of 2 indicates that I have also written over 5000 lines of code in the language. And a rank of 3 indicates that I have also written over 30000 lines of code in the language.\\\vspace{0.2cm}
+        I have assigned each of the languages listed below a rank between 1-3 to indicate my level of proficiency with that language. A rank of 1 indicates that I have taken a college course that made use of the language and/or have read a book about the language. A rank of 2 indicates that I have also written over 5,000 lines of code in the language. And a rank of 3 indicates that I have also written over 30,000 lines of code in the language.\\\vspace{0.2cm}
 
         \declarecommand{\lang}{m m}{\item \textsc{#1}: #2}
 
@@ -177,9 +155,11 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
         \begin{itemize}
             \lang{Python}{3}
             \lang{C/C++}{2}
+            \lang{Perl}{2}
+            \lang{Rust}{2}
             \lang{Shell}{2}
-            \lang{Java}{1}
             \lang{Haskell}{1}
+            \lang{Java}{1}
             \lang{Javascript}{1}
             \lang{MATLAB}{1}
         \end{itemize}
@@ -194,23 +174,7 @@ Student of Computer Science and Mathematics at Rutgers University, New Brunswick
             \lang{HTML/CSS}{1}
         \end{itemize}
 
-    \sub{Linux}
-    \begin{itemize}
-        \item I have used Linux exclusively on my desktop (which currently runs Gentoo) and laptop (which currently runs Debian Stable) for over 5 years.
-        \item I have a lot of experience writing Bash scripts and working from the command-line.
-        \item I have experience configuring and compiling the Linux kernel and aspire to one day make contributions to the kernel's source code.
-        \item My favorite courses in college were ``Systems Programming'' and ``Operating Systems'', both of which have well prepared me for programming in a Unix environment.
-    \end{itemize}
-
-    \sub{Networking}\\
-        While working for Comcast Cable, my group worked very closely with the Network Engineering department to detect and resolve network outages. During this time, I passed the exams required to obtain each of the following technical certifications:
-        \begin{itemize}
-            \item Comptia A+
-            \item Comptia Network+
-            \item Cisco Certified Network Associate (CCNA)
-        \end{itemize}
-
-    \sub{Technologies} Flask, NumPy, Pandas, AWS, Travis CI, Git, Vim
+    \sub{Technologies} Django, Flask, Git, Linux, Twisted, Vim
 \end{itemize}
 
 \end{document}
