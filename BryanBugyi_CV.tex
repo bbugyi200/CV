@@ -6,10 +6,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Header Declarations
 \documentclass[letterpaper,11pt]{article}
+\usepackage{booktabs}
 \usepackage{etoolbox}
 \usepackage{framed}
 \usepackage{tocloft}
 \usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tabularx}
 \usepackage[svgnames]{xcolor}
 
 \input{/home/bryan/Sync/lib/latex/gutils.tex}
@@ -126,24 +129,29 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
     \declarecommand{\ssub}{m}{\textit{\uline{#1}}\\}
 
     \sub{Languages}\\
-        I have assigned each of the languages listed below a rank between $R1-R5$ to indicate my level of proficiency with that language. I use ``lines-of-code ($loc$) written'' as my metric here (e.g. I have written $\geq5,000$ lines of code in all languages marked with a rank of $R2$ or above):\vspace{0.2cm}
+        To indicate my level of proficiency with each programming language I am at least somewhat familiar with, I have used ``lines-of-code ($LoC$) written'' as my key metric in the table below:
 
-        $R1: \geq 1,000$ $(loc)$\hspace{1.25cm}$R2: 5,000$\hspace{1.25cm}$R3: 20,000$\hspace{1.25cm}$R4: 50,000$\hspace{1.25cm}$R5: 150,000$\\\vspace{0.4cm}
+        \declarecommand{\lang}{m m}{\textsc{#1} $\geq$ #2 $LoC$}
 
-        \declarecommand{\lang}{m m}{\textsc{#1}: #2}
+        \declarecommand{\A}{}{$1,000$}
+        \declarecommand{\B}{}{$5,000$}
+        \declarecommand{\C}{}{$20,000$} 
+        \declarecommand{\D}{}{$50,000$}
+        \declarecommand{\E}{}{$150,000$}
 
-        \ssub{Programming Languages}\vspace{0.25cm}
-
-        \lang{Python}{$R5$}\hspace{1.0cm}
-        \lang{Bash}{$R4$}\hspace{1.2cm}
-        \lang{C/C++}{$R3$}\hspace{1.1cm}
-        \lang{Perl}{$R2$}
-        \vspace{0.2cm}
-
-        \lang{Rust}{$R2$}\hspace{1.5cm}
-        \lang{Haskell}{$R1$}\hspace{0.6cm}
-        \lang{Java}{$R1$}\hspace{1.65cm}
-        \lang{Javascript}{$R1$}
+        \ssub{Programming Languages}\vspace{-0.5cm}
+        \begin{multicols}{3}
+            \begin{tabularx}{0.9\textwidth} { >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X }
+                \lang{Python}{\E} &
+                \lang{Bash}{\C} &
+                \lang{C/C++}{\C} \\
+                \lang{Perl}{\B} &
+                \lang{Rust}{\B} &
+                \lang{Haskell}{\A} \\
+                \lang{Java}{\A} &
+                \lang{Javascript}{\A} \\
+            \end{tabularx}
+        \end{multicols}
 
     \sub{Frameworks} Django, Flask, Pandas, Twisted
     \sub{Technologies} Debian, Docker, Git, PostgreSQL, RedHat, Vim
