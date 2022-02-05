@@ -96,9 +96,14 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
 \resheading{Industry Experience}
 \begin{itemize}
     \item
-	\ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer}{January 2021 - Current} \vspace{8pt}
+    \ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer (SRE) / Senior Software Engineer}{January 2021 - Current} \vspace{8pt}
 
-        Site Reliability Engineering (SRE) at Bloomberg uses both software and systems engineering to build and reliably run their production systems.
+        SREs at Bloomberg use both software and systems engineering to build and reliably run their production systems. I am a founding member of the Compliance SRE (CSRE) team. A few notable achievements associated with my work at Bloomberg are listed below:
+	\begin{itemize}
+            \resitem{Lead Software Engineer for most software projects (primarily Python) on the CSRE team.}
+            \resitem{Maintainer of Bloomberg's community cookiecutter for Python projects.}
+            \resitem{Founder of new ``ChangeLog Driven Release (CLDR)'' methodology (alpha testing across Compliance department).}
+	\end{itemize}
 
     \item
 	\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 - January 2021} \vspace{8pt}
@@ -113,7 +118,7 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
     \item
     \ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 - 2016} \vspace{8pt}
 
-        Tier III Technical Support at Comcast was a liaison group that worked to resolved chronic customer issues as well as outages which were impacting multiple customers. This involved troubleshooting Comcast's network to resolve the issue directly or, failing at that, escalating to the appropriate Engineering group and working with them to diagnose and resolve the issue cooperatively. Some of the other responsibilities associated with this role are listed below: \vspace{-4pt}
+        Tier III Technical Support at Comcast was a liaison group that worked to resolve chronic customer issues as well as outages which were impacting multiple customers. This involved troubleshooting Comcast's network to resolve the issue directly or, failing at that, escalating to the appropriate Engineering group and working with them to diagnose and resolve the issue cooperatively. Some of the other responsibilities associated with this role are listed below: \vspace{-4pt}
     \begin{itemize}
             \resitem{Monitored for large-scale network outages by aggregating and analyzing customer issue data from our ticketing system.} 
             \resitem{Used Python scripting to automate frequent department tasks (e.g. parsing spreadsheets, opening/closing tickets, information retrieval).}
@@ -128,8 +133,8 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
     \declarecommand{\sub}{m}{\item {\bf #1:}}
     \declarecommand{\ssub}{m}{\textit{\uline{#1}}\\}
 
-    \sub{Languages}\\
-        To indicate my level of proficiency with each programming language I am at least somewhat familiar with, I have used ``lines-of-code ($LoC$) written'' as my key metric in the table below:
+    \sub{Programming Languages}\\
+        To indicate my level of proficiency with a language, I have used ``lines-of-code ($LoC$) written'' as my key metric, though I admit this provides at best an incomplete picture:
 
         \declarecommand{\lang}{m m}{\textsc{#1} $\geq$ #2 $LoC$}
 
@@ -137,24 +142,24 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
         \declarecommand{\B}{}{$5,000$}
         \declarecommand{\C}{}{$20,000$} 
         \declarecommand{\D}{}{$50,000$}
-        \declarecommand{\E}{}{$150,000$}
+        \declarecommand{\E}{}{$100,000$}
 
-        \ssub{Programming Languages}\vspace{-0.5cm}
-        \begin{multicols}{3}
-            \begin{tabularx}{0.9\textwidth} { >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X }
-                \lang{Python}{\E} &
-                \lang{Bash}{\C} &
-                \lang{C/C++}{\C} \\
-                \lang{Perl}{\B} &
-                \lang{Rust}{\B} &
-                \lang{Haskell}{\A} \\
-                \lang{Java}{\A} &
-                \lang{Javascript}{\A} \\
-            \end{tabularx}
-        \end{multicols}
+        \vspace{0.08cm}
+        \begin{tabularx}{0.9\textwidth} { >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X }
+            \lang{Python}{\E} &
+            \lang{Bash}{\C} &
+            \lang{C/C++}{\C} \\
+            \lang{Perl}{\B} &
+            \lang{Rust}{\B} &
+            \lang{Vimscript}{\B} \\
+            \lang{Haskell}{\A} &
+            \lang{Java}{\A} &
+            \lang{Javascript}{\A} \\
+        \end{tabularx}
 
-    \sub{Frameworks} Django, Flask, Pandas, Twisted
-    \sub{Technologies} Debian, Docker, Git, PostgreSQL, RedHat, Vim
+    \sub{Frameworks} Django, FastAPI, Flask, Pluggy, ZeroMQ
+
+    \sub{Technologies} Docker, Git, \LaTeX, Linux, PostgreSQL, Redis, Vim
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -163,7 +168,21 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
 \resheading{Open Source (GitHub) Projects}
 
 \begin{itemize}
-\item \ressubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019 - 2020}
+\item \ressubheading{python-boltons/*}{Python}{Python libraries made available as ``boltons''; We think they should be ``builtins''.}{2021--present}
+    \begin{itemize}
+        \item
+            Founder and lead developer of this project / series of projects. Example bolton libraries:\vspace{-0.57cm}
+            \begin{multicols}{3}
+                \begin{itemize}
+                    \item cc-python (cookiecutter)
+                    \item clack (config CLI lib)
+                    \item eris (error-handling lib)
+                    \item hush (plugin secrets lib)
+                    \item logrus (logging lib)
+                \end{itemize}
+            \end{multicols}\vspace{-0.45cm}
+    \end{itemize}
+\item \ressubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
     \begin{itemize}
         \item
             Improved the way black handles strings (https://github.com/psf/black/pull/1132).
@@ -172,19 +191,25 @@ I am a Software Engineer with a very ``systems''-oriented skill set. In particul
         \item
             Led to the closing of five unrelated GitHub issues (opened by five different developers at different times).
     \end{itemize}
-\item \ressubheading{bbugyi200/cookie}{Shell}{A Template-based File Generator.}{2018 - 2019}
+\item \ressubheading{bbugyi200/cookie}{Shell}{A Template-based File Generator.}{2018--2019}
     \begin{itemize}
         \item
-            Well received by the developer community (over 200 stars on GitHub).
+            Well received by the developer community (over 250 stars on GitHub).
         \item
             Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
     \end{itemize}
-\item \ressubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017 - 2019}
+\item \ressubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2019}
     \begin{itemize}
         \item
-            Well received by the developer community (over 400 stars on GitHub).
+            Well received by the developer community (over 500 stars on GitHub).
         \item
             Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
+    \end{itemize}
+\item \ressubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous projects that I've open-sourced on GitHub.}{2017--present}
+    \begin{itemize}[noitemsep]
+        \item greatday (GTD todo manager) | Python
+        \item cldr (ChangeLog Driven Releases) | Python
+        \item shv (Shell History Viewer) | Rust, Shell
     \end{itemize}
 \end{itemize}
 
