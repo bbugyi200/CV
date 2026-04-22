@@ -1,215 +1,256 @@
-% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
-% (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com> http://www.davidgrant.ca
-% (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com> http://www.nathanieljohnston.com
+% Bryan Bugyi --- Resume (Batman / Dossier Modern variant, v2).
 %
-% This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 2.5 License.
-% See http://creativecommons.org/licenses/by-nc-sa/2.5/ for details.
+% Layout heritage: original article-class resume scaffolding by
+%   (c) 2002 Matthew Boedicker <mboedick@mboedick.org>
+%   (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com>
+%   (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com>
+% This work is licensed under CC BY-NC-SA 2.5
+% (http://creativecommons.org/licenses/by-nc-sa/2.5/).
 %
-% Batman-themed variant: restrained Gotham palette + tighter content for an AI-founder audience.
+% Substantially rewritten 2026 for typographic refinement: EB Garamond body,
+% IBM Plex Sans display, IBM Plex Mono accents, gold leader-rule section
+% headings, restrained Gotham palette, single fontawesome5 ornament.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Header Declarations
 \documentclass[letterpaper,11pt]{article}
-\usepackage{booktabs}
-\usepackage{etoolbox}
-\usepackage{framed}
-\usepackage{tocloft}
-\usepackage{multicol}
-\usepackage{tabularx}
-\usepackage[svgnames]{xcolor}
-\usepackage{helvet}
-\usepackage{fontawesome5}
-\usepackage{hyperref}
 
-\input{/home/bryan/Sync/lib/latex/gutils.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry
+\usepackage[letterpaper,margin=0.75in,top=0.6in,bottom=0.6in]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Gotham Palette
+\usepackage[svgnames]{xcolor}
 \definecolor{batblack}{HTML}{0B0B0F}
-\definecolor{batcharcoal}{HTML}{1A1A1F}
-\definecolor{batgold}{HTML}{F5C518}
+\definecolor{batink}{HTML}{1F1F24}
+\definecolor{batgold}{HTML}{D4A017}
+\definecolor{batgoldlight}{HTML}{F5C518}
+\definecolor{batstone}{HTML}{6B6B73}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style Settings
-\newlength{\outerbordwidth}
-\pagestyle{empty}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Typography
+\usepackage{ebgaramond}    % Body serif
+\usepackage{plex-sans}     % Display sans
+\usepackage{plex-mono}     % Mono accents
+\usepackage{microtype}
+
+% gutils brings amsmath, amssymb, amsthm, bm, enumitem, float, graphicx,
+% listings, ulem, xparse plus the \declarecommand macro.
+\input{/home/bryan/Sync/lib/latex/gutils.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layout / structure packages
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{fontawesome5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{{\sffamily\scshape\color{batstone}\fontsize{8.5pt}{10pt}\selectfont\thepage}}
+
 \raggedbottom
 \raggedright
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\frenchspacing
 
-\robustify\cftdotfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Section heading
+\newcommand{\resheading}[1]{%
+  \par\addvspace{14pt}%
+  \noindent
+  {\sffamily\bfseries\color{batgold}\fontsize{11pt}{13pt}\selectfont%
+   \textls*[150]{\MakeUppercase{#1}}}%
+  \hspace{0.6em}%
+  {\color{batgold}\leaders\hrule height 0.6pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{4pt}%
+}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bullets
+\setlist[itemize,1]{
+  label={\textcolor{batgold}{\small\faCaretRight}},
+  leftmargin=1.4em, topsep=2pt, itemsep=2pt, parsep=0pt
+}
+\setlist[itemize,2]{
+  label={\textcolor{batstone}{\textendash}},
+  leftmargin=1.2em, topsep=1pt, itemsep=1pt, parsep=0pt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom commands
+\newcommand{\midsep}{\,\textcolor{batstone}{$\cdot$}\,}
+
+% Job subheading: company / location / role / dates.
+\newcommand{\ressubheading}[4]{%
+  \par\addvspace{4pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\sffamily\bfseries\color{batblack}\fontsize{11pt}{13pt}\selectfont #1} &
+    {\sffamily\color{batstone}\fontsize{10pt}{12pt}\selectfont #2} \\[1pt]
+    {\itshape\color{batink}\fontsize{11pt}{13pt}\selectfont #3} &
+    {\sffamily\scshape\color{batstone}\fontsize{9.5pt}{11.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-2pt}
+}
+
+% Project subheading: name / tech-stack-in-mono / tagline / dates.
+\newcommand{\projsubheading}[4]{%
+  \par\addvspace{4pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\sffamily\bfseries\color{batblack}\fontsize{11pt}{13pt}\selectfont #1} &
+    {\ttfamily\color{batstone}\fontsize{9pt}{11pt}\selectfont #2} \\[1pt]
+    {\itshape\color{batink}\fontsize{11pt}{13pt}\selectfont #3} &
+    {\sffamily\scshape\color{batstone}\fontsize{9.5pt}{11.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-2pt}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlinks (load last)
+\usepackage{hyperref}
 \hypersetup{
-    colorlinks=true,
-    urlcolor=batcharcoal,
+  colorlinks=true,
+  urlcolor=batgold,
+  linkcolor=batgold,
+  citecolor=batgold,
+  pdftitle={Bryan Bugyi --- Resume},
+  pdfauthor={Bryan Bugyi}
 }
 
-\setlength{\outerbordwidth}{3pt}
-\definecolor{shadecolor}{HTML}{0B0B0F}   % outer title-bar: bat-black
-\definecolor{shadecolorB}{HTML}{1A1A1F}  % inner title-bar: slightly lighter charcoal
 
-% ----- Margin
-\setlength{\evensidemargin}{-0.25in}
-\setlength{\headheight}{0in}
-\setlength{\headsep}{0in}
-\setlength{\oddsidemargin}{-0.25in}
-\setlength{\paperheight}{11in}
-\setlength{\paperwidth}{8.5in}
-\setlength{\tabcolsep}{0in}
-\setlength{\textheight}{9.5in}
-\setlength{\textwidth}{7in}
-\setlength{\topmargin}{-0.3in}
-\setlength{\topskip}{0in}
-\setlength{\voffset}{0.1in}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands
-\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
-\newcommand{\resheading}[1]{\vspace{8pt}
-  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
-    \begin{shaded}
-\setlength{\fboxsep}{0pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\sffamily{\mbox{~}\makebox[6.762in][l]{\large\textcolor{batgold}{#1}} \vphantom{p\^{E}}}}}}
-    \end{shaded}
-  }\vspace{-5pt}
-}
-\newcommand{\ressubheading}[4]{
-\begin{tabular*}{6.5in}{l@{\cftdotfill{\cftsecdotsep}\extracolsep{\fill}}r}
-        \textbf{#1} & #2 \\
-        \textit{#3} & \textit{#4} \\
-\end{tabular*}\vspace{-6pt}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Start of CV
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  HEADER                                                 %
+%  MASTHEAD
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-{\fontfamily{phv}\selectfont\Huge\textbf{Bryan Bugyi}}~{\color{batgold}\raisebox{0.2em}{\LARGE\faMask}} & \textbf{\today} \\
-\end{tabular*}
+\noindent
+{\sffamily\bfseries\fontsize{28pt}{30pt}\selectfont\color{batblack}Bryan Bugyi}%
+\hfill
+\begin{minipage}[b]{2.4in}
+  \raggedleft
+  {\sffamily\color{batink}\fontsize{10pt}{13pt}\selectfont\scshape%
+   \textls*[120]{Software Engineer}\\[1pt]
+   \textls*[120]{Agentic-AI Tooling}}
+\end{minipage}
 
+\vspace{6pt}
+\noindent\textcolor{batgold}{\rule{\textwidth}{0.8pt}}
 \vspace{2pt}
 
-\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-Software Engineer $\cdot$ Agentic-AI Tooling & bryanbugyi34@gmail.com \\
-\href{https://github.com/bbugyi200}{github.com/bbugyi200} $\cdot$ \href{https://linkedin.com/in/bryan-bugyi}{linkedin.com/in/bryan-bugyi} & (609) 500-7081 \\
-\end{tabular*}
-
-\vspace{4pt}
-\begin{center}
-\textit{\small ``Why do we fall, sir? So that we can learn to pick ourselves up.''}
-\end{center}
-\vspace{-4pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  CONTACT STRIP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+{\sffamily\color{batink}\fontsize{10pt}{12pt}\selectfont%
+\textcolor{batgold}{\faEnvelope}\,\,\href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}%
+\midsep
+\textcolor{batgold}{\faPhone}\,\,(609)~500-7081%
+\midsep
+\textcolor{batgold}{\faGithub}\,\,\href{https://github.com/bbugyi200}{bbugyi200}%
+\midsep
+\textcolor{batgold}{\faLinkedin}\,\,\href{https://linkedin.com/in/bryan-bugyi}{bryan-bugyi}%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  DOSSIER (summary)                                      %
+%  EPIGRAPH + ORNAMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{14pt}
+\begin{center}
+{\color{batink}\rule[0.55ex]{2.0in}{0.3pt}}\,\,\raisebox{-0.15ex}{\textcolor{batgoldlight}{\large\faMask}}\,\,{\color{batink}\rule[0.55ex]{2.0in}{0.3pt}}\\[5pt]
+{\itshape\color{batink}\fontsize{10.5pt}{13pt}\selectfont``Why do we fall, sir?\ So that we can learn to pick ourselves up.''}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  DOSSIER (summary)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Dossier}
-Software engineer with \textasciitilde9 years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. Current focus: \textbf{agentic-AI developer tooling} --- architecting \textbf{sase}, a multi-agent software-engineering toolkit that orchestrates Claude Code, Gemini CLI, and Codex into a managed pipeline, translating recent agentic-coding research into a tool used daily for real engineering work.
+Software engineer with seven years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. Current focus: \textbf{agentic-AI developer tooling}~--- architecting \textbf{\texttt{sase}}, a multi-agent software-engineering toolkit that orchestrates Claude Code, Gemini CLI, and Codex into a managed pipeline, translating recent agentic-coding research into a tool used daily for real engineering work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  TRAINING (education)                                   %
+%  TRAINING (education)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Training}
-\begin{itemize}
-\item
-    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science (minor in Mathematics)}{2015 -- 2019}
-\end{itemize}
+\ressubheading{Rutgers University}{New Brunswick, NJ}{B.S.\ Computer Science (minor in Mathematics)}{September 2015 -- May 2019}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  CASEWORK (industry experience)                         %
+%  CASEWORK (industry experience)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Casework}
+
+\ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 -- present}
 \begin{itemize}
+  \item Full-stack engineer on Google Ad Manager; Java on the backend, Dart / AngularDart / Sass on the frontend.
+\end{itemize}
 
-    \item
-    \ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 -- present}
-    \begin{itemize}
-        \resitem{Full-stack engineer on Google Ad Manager; Java on the backend, Dart / AngularDart / Sass on the frontend.}
-    \end{itemize}
+\ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer / Senior Software Engineer}{January 2021 -- May 2022}
+\begin{itemize}
+  \item Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python portfolio.
+  \item Maintained Bloomberg's firm-wide Python cookiecutter, shaping new-project scaffolding across the company.
+  \item Authored the ``ChangeLog Driven Release'' (CLDR) methodology; adopted in alpha across the Compliance department.
+\end{itemize}
 
-    \item
-    \ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer / Senior Software Engineer}{January 2021 -- May 2022}
-    \begin{itemize}
-        \resitem{Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python portfolio.}
-        \resitem{Maintained Bloomberg's firm-wide Python cookiecutter, shaping new-project scaffolding across the company.}
-        \resitem{Authored the ``ChangeLog Driven Release'' (CLDR) methodology; adopted in alpha across the Compliance department.}
-    \end{itemize}
+\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 -- January 2021}
+\begin{itemize}
+  \item Led integration of \texttt{pylint} into a 1M+ line Python trading codebase; built the supporting tooling to make it stick.
+  \item Lead developer of Edgestream's Django-based investor-facing web portal.
+  \item Delivered large-scale improvements to the production team's in-house testing framework and test runner.
+\end{itemize}
 
-    \item
-    \ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 -- January 2021}
-    \begin{itemize}
-        \resitem{Led integration of \texttt{pylint} into a 1M+ line Python trading codebase; built the supporting tooling to make it stick.}
-        \resitem{Lead developer of Edgestream's Django-based investor-facing web portal.}
-        \resitem{Delivered large-scale improvements to the production team's in-house testing framework and test runner.}
-    \end{itemize}
-
-    \item
-    \ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 -- 2016}
-    \begin{itemize}
-        \resitem{Diagnosed large-scale network outages; automated recurring team workflows (ticketing, spreadsheet parsing, info retrieval) with Python.}
-    \end{itemize}
-
+\ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 -- 2016}
+\begin{itemize}
+  \item Diagnosed large-scale network outages; automated recurring team workflows (ticketing, spreadsheet parsing, info retrieval) with Python.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  UTILITY BELT (skills)                                  %
+%  UTILITY BELT (skills)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Utility Belt}
-\begin{itemize}
-    \declarecommand{\sub}{m}{\item {\bf #1:}}
-
-    \sub{AI / Agentic Systems} Claude Code, Gemini CLI, Codex, prompt engineering, LLM orchestration, multi-agent workflow design
-
-    \sub{Primary} Python, Linux, TCP/IP networking, Bash
-
-    \sub{Working} C/C++, Rust, Perl, Java, JavaScript, Haskell, Vimscript
-
-    \sub{Tools} Docker, Git, PostgreSQL, Redis, \LaTeX, Vim, Prometheus / Grafana
-
-    \sub{Frameworks} Django, FastAPI, Flask, Pluggy, ZeroMQ, Textual
-\end{itemize}
+\noindent
+\begin{tabularx}{\textwidth}{@{}>{\sffamily\scshape\color{batgold}\fontsize{9.5pt}{13pt}\selectfont}p{1.55in}@{\hspace{0.4em}}>{\fontsize{10.5pt}{13pt}\selectfont}X@{}}
+AI / Agentic Systems & Claude Code\,$\cdot$\,Gemini CLI\,$\cdot$\,Codex\,$\cdot$\,prompt engineering\,$\cdot$\,LLM orchestration\,$\cdot$\,multi-agent workflow design \\[2pt]
+Primary              & Python\,$\cdot$\,Linux\,$\cdot$\,TCP/IP networking\,$\cdot$\,Bash \\[2pt]
+Working              & C/C++\,$\cdot$\,Rust\,$\cdot$\,Perl\,$\cdot$\,Java\,$\cdot$\,JavaScript\,$\cdot$\,Haskell\,$\cdot$\,Vimscript \\[2pt]
+Tools                & Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,\LaTeX{}\,$\cdot$\,Vim\,$\cdot$\,Prometheus / Grafana \\[2pt]
+Frameworks           & Django\,$\cdot$\,FastAPI\,$\cdot$\,Flask\,$\cdot$\,Pluggy\,$\cdot$\,ZeroMQ\,$\cdot$\,Textual \\
+\end{tabularx}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  FIELD WORK (open-source projects)                      %
+%  FIELD WORK (open-source projects)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Field Work}
+
+\projsubheading{sase --- Structured Agentic Software Engineering}{Python}{Multi-agent toolkit orchestrating Claude, Gemini, and Codex.}{2025--present}
 \begin{itemize}
+  \item Architected the full system: \textbf{ACE} (multi-agent supervision TUI built on Textual), the \textbf{AXE} daemon, and a YAML-driven workflow engine that turns natural-language prompts into structured, multi-step agentic work.
+  \item Built a \texttt{pluggy}-based plugin system for VCS / workspace integrations (Git, GitHub, Chezmoi, Telegram, Gemini, Neovim), Prometheus telemetry surfacing 33 pipeline metrics, and a bead-based issue tracker for agent-owned task queues.
+  \item Grounded in current agentic-coding research (Hassan et~al.\ 2025; Vaziri et~al.\ 2024)~--- translating paper ideas into tools I ship software with daily.
+\end{itemize}
 
-\item \ressubheading{sase --- Structured Agentic Software Engineering}{Python}{Multi-agent toolkit orchestrating Claude, Gemini, and Codex.}{2025--present}
+\projsubheading{python-boltons/*}{Python}{Python libraries we think should be ``builtins''.}{2021--present}
+\begin{itemize}
+  \item Founder and lead developer of this series of projects. Notable boltons:
+  \vspace{-0.40cm}
+  \begin{multicols}{3}
     \begin{itemize}
-        \resitem{Architected the full system: \textbf{ACE} (multi-agent supervision TUI built on Textual), the \textbf{AXE} daemon, and a YAML-driven workflow engine that turns natural-language prompts into structured, multi-step agentic work.}
-        \resitem{Built a \texttt{pluggy}-based plugin system for VCS / workspace integrations (Git, GitHub, Chezmoi, Telegram, Gemini, Neovim), Prometheus telemetry surfacing 33 pipeline metrics, and a bead-based issue tracker for agent-owned task queues.}
-        \resitem{Grounded in current agentic-coding research (Hassan et al.\ 2025; Vaziri et al.\ 2024) --- translating paper ideas into tools I ship software with daily.}
+      \item cc-python (cookiecutter)
+      \item clack (config CLI lib)
+      \item eris (error-handling lib)
+      \item hush (plugin secrets lib)
+      \item logrus (logging lib)
     \end{itemize}
+  \end{multicols}
+  \vspace{-0.40cm}
+\end{itemize}
 
-\item \ressubheading{python-boltons/*}{Python}{Python libraries we think should be ``builtins''.}{2021--present}
-    \begin{itemize}
-        \item
-            Founder and lead developer of this series of projects. Notable boltons: \vspace{-0.57cm}
-            \begin{multicols}{3}
-                \begin{itemize}
-                    \item cc-python (cookiecutter)
-                    \item clack (config CLI lib)
-                    \item eris (error-handling lib)
-                    \item hush (plugin secrets lib)
-                    \item logrus (logging lib)
-                \end{itemize}
-            \end{multicols}\vspace{-0.45cm}
-    \end{itemize}
+\projsubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
+\begin{itemize}
+  \item Rewrote black's string-handling logic ($\sim$3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132}; closed five unrelated user-filed issues in one shot.
+\end{itemize}
 
-\item \ressubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
-    \begin{itemize}
-        \resitem{Rewrote black's string-handling logic (\textasciitilde3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132}; closed five unrelated user-filed issues in one shot.}
-    \end{itemize}
+\projsubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2021}
+\begin{itemize}
+  \item 500+ GitHub stars; accepted multiple external contributions (issues, bug reports, code).
+\end{itemize}
 
-\item \ressubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2021}
-    \begin{itemize}
-        \resitem{500+ GitHub stars; accepted multiple external contributions (issues, bug reports, code).}
-    \end{itemize}
-
-\item \ressubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous open-source projects on GitHub.}{2017--present}
-    \begin{itemize}
-        \resitem{\texttt{greatday} (GTD todo manager) $\cdot$ \texttt{cldr} (ChangeLog Driven Releases) $\cdot$ \texttt{shv} (Rust shell-history viewer) $\cdot$ \texttt{cookie} (templated file generator, 250+ stars).}
-    \end{itemize}
-
+\projsubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous open-source projects on GitHub.}{2017--present}
+\begin{itemize}
+  \item \texttt{greatday} (GTD todo manager)\,$\cdot$\,\texttt{cldr} (ChangeLog Driven Releases)\,$\cdot$\,\texttt{shv} (Rust shell-history viewer)\,$\cdot$\,\texttt{cookie} (templated file generator, 250+ stars).
 \end{itemize}
 
 \end{document}
