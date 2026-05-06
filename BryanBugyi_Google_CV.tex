@@ -1,0 +1,264 @@
+% Bryan Bugyi --- Resume (Google / Material-inspired variant).
+%
+% Layout heritage: original article-class resume scaffolding by
+%   (c) 2002 Matthew Boedicker <mboedick@mboedick.org>
+%   (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com>
+%   (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com>
+% This work is licensed under CC BY-NC-SA 2.5
+% (http://creativecommons.org/licenses/by-nc-sa/2.5/).
+%
+% Substantially rewritten 2026 as a clean internal-profile style variant:
+% sans-first typography, subtle Material-inspired hairlines, and restrained
+% Google-color accents.
+
+\documentclass[letterpaper,10pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry
+\usepackage[letterpaper,margin=0.58in,top=0.52in,bottom=0.52in]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Palette
+\usepackage[svgnames]{xcolor}
+\definecolor{googleblue}{HTML}{1A73E8}
+\definecolor{googlered}{HTML}{EA4335}
+\definecolor{googleyellow}{HTML}{FBBC04}
+\definecolor{googlegreen}{HTML}{34A853}
+\definecolor{googleink}{HTML}{202124}
+\definecolor{googleslate}{HTML}{5F6368}
+\definecolor{googleline}{HTML}{DADCE0}
+\definecolor{googlesoft}{HTML}{F8Fafd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Typography
+\usepackage{plex-sans}
+\usepackage{plex-mono}
+\usepackage{microtype}
+\renewcommand{\familydefault}{\sfdefault}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layout / structure packages
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{{\color{googleslate}\fontsize{8pt}{9.5pt}\selectfont\thepage}}
+
+\raggedbottom
+\raggedright
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\frenchspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Small helpers
+\newcommand{\midsep}{\,\textcolor{googleline}{\textbullet}\,}
+\newcommand{\googlebar}{%
+  \noindent
+  \textcolor{googleblue}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{googlered}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{googleyellow}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{googlegreen}{\rule{0.25\textwidth}{1.8pt}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Section heading
+\newcommand{\resheading}[1]{%
+  \par\addvspace{10pt}%
+  \noindent
+  {\bfseries\color{googleblue}\fontsize{10pt}{12pt}\selectfont%
+   \textls*[90]{\MakeUppercase{#1}}}%
+  \hspace{0.65em}%
+  {\color{googleline}\leaders\hrule height 0.45pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{3pt}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bullets
+\setlist[itemize,1]{
+  label={\textcolor{googleblue}{\raisebox{0.15ex}{\scriptsize\textbullet}}},
+  leftmargin=1.25em,
+  topsep=1pt,
+  itemsep=1.5pt,
+  parsep=0pt
+}
+\setlist[itemize,2]{
+  label={\textcolor{googleslate}{\textendash}},
+  leftmargin=1.15em,
+  topsep=0pt,
+  itemsep=0pt,
+  parsep=0pt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom commands
+% Company / location / role / dates.
+\newcommand{\ressubheading}[4]{%
+  \par\addvspace{3pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\bfseries\color{googleink}\fontsize{10.4pt}{12.4pt}\selectfont #1} &
+    {\color{googleslate}\fontsize{9.2pt}{11pt}\selectfont #2} \\[0.5pt]
+    {\color{googleink}\fontsize{9.9pt}{11.7pt}\selectfont #3} &
+    {\color{googleslate}\fontsize{8.8pt}{10.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-3pt}
+}
+
+% Project / tech-stack / tagline / dates.
+\newcommand{\projsubheading}[4]{%
+  \par\addvspace{3pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\bfseries\color{googleink}\fontsize{10.4pt}{12.4pt}\selectfont #1} &
+    {\ttfamily\color{googleslate}\fontsize{8.6pt}{10.3pt}\selectfont #2} \\[0.5pt]
+    {\color{googleink}\fontsize{9.9pt}{11.7pt}\selectfont #3} &
+    {\color{googleslate}\fontsize{8.8pt}{10.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-3pt}
+}
+
+\newcommand{\skillrow}[2]{%
+  {\bfseries\color{googleblue}\fontsize{8.8pt}{11pt}\selectfont #1} &
+  {\color{googleink}\fontsize{9.5pt}{11pt}\selectfont #2} \\[1.5pt]
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlinks (load last)
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=googleblue,
+  linkcolor=googleblue,
+  citecolor=googleblue,
+  pdftitle={Bryan Bugyi --- Google Resume},
+  pdfauthor={Bryan Bugyi}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document
+\begin{document}
+\color{googleink}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  HEADER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  {\bfseries\fontsize{27pt}{29pt}\selectfont Bryan Bugyi} &
+  \begin{minipage}[b]{2.65in}
+    \raggedleft
+    {\color{googleslate}\fontsize{9.5pt}{12pt}\selectfont
+     Software Engineer\\
+     Agentic-AI Developer Tooling}
+  \end{minipage}
+\end{tabular*}
+
+\vspace{5pt}
+\googlebar
+\vspace{5pt}
+
+\noindent
+{\color{googleink}\fontsize{9.2pt}{11pt}\selectfont%
+\textcolor{googleblue}{Email}\,\,\href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}%
+\midsep
+\textcolor{googlered}{Phone}\,\,(609)~500-7081%
+\midsep
+\textcolor{googlegreen}{GitHub}\,\,\href{https://github.com/bbugyi200}{bbugyi200}%
+\midsep
+\textcolor{googleyellow}{LinkedIn}\,\,\href{https://linkedin.com/in/bryan-bugyi}{bryan-bugyi}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  PROFILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Profile}
+Software engineer with seven years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. Current focus: \textbf{agentic-AI developer tooling}~--- architecting \textbf{\texttt{sase}}, a multi-agent software-engineering toolkit that orchestrates Claude Code, Gemini CLI, and Codex into a managed pipeline, translating recent agentic-coding research into a tool used daily for real engineering work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Education}
+\ressubheading{Rutgers University}{New Brunswick, NJ}{B.S.\ Computer Science (minor in Mathematics)}{September 2015 -- May 2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Experience}
+
+\ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 -- present}
+\begin{itemize}
+  \item Full-stack engineer on Google Ad Manager; Java on the backend, Dart / AngularDart / Sass on the frontend.
+\end{itemize}
+
+\ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer / Senior Software Engineer}{January 2021 -- May 2022}
+\begin{itemize}
+  \item Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python portfolio.
+  \item Maintained Bloomberg's firm-wide Python cookiecutter, shaping new-project scaffolding across the company.
+  \item Authored the ``ChangeLog Driven Release'' (CLDR) methodology; adopted in alpha across the Compliance department.
+\end{itemize}
+
+\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 -- January 2021}
+\begin{itemize}
+  \item Led integration of \texttt{pylint} into a 1M+ line Python trading codebase; built the supporting tooling to make it stick.
+  \item Lead developer of Edgestream's Django-based investor-facing web portal.
+  \item Delivered large-scale improvements to the production team's in-house testing framework and test runner.
+\end{itemize}
+
+\ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 -- 2016}
+\begin{itemize}
+  \item Diagnosed large-scale network outages; automated recurring team workflows (ticketing, spreadsheet parsing, info retrieval) with Python.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Skills}
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{1.45in}@{\hspace{0.45em}}X@{}}
+\skillrow{AI / Agentic Systems}{Claude Code\,$\cdot$\,Gemini CLI\,$\cdot$\,Codex\,$\cdot$\,prompt engineering\,$\cdot$\,LLM orchestration\,$\cdot$\,multi-agent workflow design}
+\skillrow{Primary}{Python\,$\cdot$\,Linux\,$\cdot$\,TCP/IP networking\,$\cdot$\,Bash}
+\skillrow{Working}{C/C++\,$\cdot$\,Rust\,$\cdot$\,Perl\,$\cdot$\,Java\,$\cdot$\,JavaScript\,$\cdot$\,Haskell\,$\cdot$\,Vimscript}
+\skillrow{Tools}{Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,\LaTeX{}\,$\cdot$\,Vim\,$\cdot$\,Prometheus / Grafana}
+\skillrow{Frameworks}{Django\,$\cdot$\,FastAPI\,$\cdot$\,Flask\,$\cdot$\,Pluggy\,$\cdot$\,ZeroMQ\,$\cdot$\,Textual}
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SELECTED PROJECTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Selected Projects}
+
+\projsubheading{sase --- Structured Agentic Software Engineering}{Python}{Multi-agent toolkit orchestrating Claude, Gemini, and Codex.}{2025--present}
+\begin{itemize}
+  \item Architected the full system: \textbf{ACE} (multi-agent supervision TUI built on Textual), the \textbf{AXE} daemon, and a YAML-driven workflow engine that turns natural-language prompts into structured, multi-step agentic work.
+  \item Built a \texttt{pluggy}-based plugin system for VCS / workspace integrations (Git, GitHub, Chezmoi, Telegram, Gemini, Neovim), Prometheus telemetry surfacing 33 pipeline metrics, and a bead-based issue tracker for agent-owned task queues.
+  \item Grounded in current agentic-coding research (Hassan et~al.\ 2025; Vaziri et~al.\ 2024)~--- translating paper ideas into tools I ship software with daily.
+\end{itemize}
+
+\projsubheading{python-boltons/*}{Python}{Python libraries we think should be ``builtins''.}{2021--present}
+\begin{itemize}
+  \item Founder and lead developer of this series of projects. Notable boltons:
+  \vspace{-0.34cm}
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item cc-python (cookiecutter)
+      \item clack (config CLI lib)
+      \item eris (error-handling lib)
+      \item hush (plugin secrets lib)
+      \item logrus (logging lib)
+    \end{itemize}
+  \end{multicols}
+  \vspace{-0.36cm}
+\end{itemize}
+
+\projsubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
+\begin{itemize}
+  \item Rewrote black's string-handling logic ($\sim$3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132}; closed five unrelated user-filed issues in one shot.
+\end{itemize}
+
+\projsubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2021}
+\begin{itemize}
+  \item 500+ GitHub stars; accepted multiple external contributions (issues, bug reports, code).
+\end{itemize}
+
+\projsubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous open-source projects on GitHub.}{2017--present}
+\begin{itemize}
+  \item \texttt{greatday} (GTD todo manager)\,$\cdot$\,\texttt{cldr} (ChangeLog Driven Releases)\,$\cdot$\,\texttt{shv} (Rust shell-history viewer)\,$\cdot$\,\texttt{cookie} (templated file generator, 250+ stars).
+\end{itemize}
+
+\end{document}
