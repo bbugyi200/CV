@@ -1,0 +1,269 @@
+% Bryan Bugyi --- Resume (LangChain / dev-tool variant).
+%
+% Layout heritage: original article-class resume scaffolding by
+%   (c) 2002 Matthew Boedicker <mboedick@mboedick.org>
+%   (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com>
+%   (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com>
+% This work is licensed under CC BY-NC-SA 2.5
+% (http://creativecommons.org/licenses/by-nc-sa/2.5/).
+%
+% Adapted 2026 from the Google variant into a LangChain-flavored palette:
+% deep teal anchor with chartreuse accent, framed for agentic-AI tooling.
+
+\documentclass[letterpaper,10pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry
+\usepackage[letterpaper,margin=0.58in,top=0.52in,bottom=0.52in]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Palette --- "LangChain Forest"
+\usepackage[svgnames]{xcolor}
+\definecolor{lcforest}{HTML}{0E4F4A}
+\definecolor{lcteal}{HTML}{1C7A6E}
+\definecolor{lcleaf}{HTML}{9CCF31}
+\definecolor{lclime}{HTML}{C6E66B}
+\definecolor{lcink}{HTML}{1A1F1E}
+\definecolor{lcslate}{HTML}{5C6B68}
+\definecolor{lcline}{HTML}{D8DEDB}
+\definecolor{lcmist}{HTML}{F4F7F5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Typography
+\usepackage{plex-sans}
+\usepackage{plex-mono}
+\usepackage{microtype}
+\usepackage{amssymb}
+\renewcommand{\familydefault}{\sfdefault}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layout / structure packages
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{{\color{lcslate}\fontsize{8pt}{9.5pt}\selectfont\thepage}}
+
+\raggedbottom
+\raggedright
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\frenchspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Small helpers
+\newcommand{\midsep}{\,\textcolor{lcline}{\textbullet}\,}
+% Chain bar: four-segment gradient forest -> teal -> leaf -> lime,
+% with a faint secondary hairline for a doc-site two-rule feel.
+\newcommand{\chainbar}{%
+  \noindent
+  \textcolor{lcforest}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{lcteal}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{lcleaf}{\rule{0.25\textwidth}{1.8pt}}%
+  \textcolor{lclime}{\rule{0.25\textwidth}{1.8pt}}%
+  \par\vspace{1.5pt}%
+  \noindent\textcolor{lcline}{\rule{\textwidth}{0.3pt}}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Section heading
+\newcommand{\resheading}[1]{%
+  \par\addvspace{10pt}%
+  \noindent
+  {\bfseries\color{lcforest}\fontsize{10pt}{12pt}\selectfont%
+   \textls*[90]{\MakeUppercase{#1}}}%
+  \hspace{0.65em}%
+  {\color{lcline}\leaders\hrule height 0.45pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{3pt}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bullets
+% Chartreuse chevron evokes a pipeline arrow without leaning on icons.
+\setlist[itemize,1]{
+  label={\textcolor{lcleaf}{\textbf{\footnotesize\textsf{$\blacktriangleright$}}}},
+  leftmargin=1.35em,
+  topsep=1pt,
+  itemsep=1.5pt,
+  parsep=0pt
+}
+\setlist[itemize,2]{
+  label={\textcolor{lcslate}{\textendash}},
+  leftmargin=1.15em,
+  topsep=0pt,
+  itemsep=0pt,
+  parsep=0pt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom commands
+% Company / location / role / dates.
+\newcommand{\ressubheading}[4]{%
+  \par\addvspace{3pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\bfseries\color{lcink}\fontsize{10.4pt}{12.4pt}\selectfont #1} &
+    {\color{lcslate}\fontsize{9.2pt}{11pt}\selectfont #2} \\[0.5pt]
+    {\color{lcink}\fontsize{9.9pt}{11.7pt}\selectfont #3} &
+    {\color{lcslate}\fontsize{8.8pt}{10.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-3pt}
+}
+
+% Project / tech-stack / tagline / dates.
+\newcommand{\projsubheading}[4]{%
+  \par\addvspace{3pt}%
+  \noindent
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\bfseries\color{lcink}\fontsize{10.4pt}{12.4pt}\selectfont #1} &
+    {\ttfamily\color{lcslate}\fontsize{8.6pt}{10.3pt}\selectfont #2} \\[0.5pt]
+    {\color{lcink}\fontsize{9.9pt}{11.7pt}\selectfont #3} &
+    {\color{lcslate}\fontsize{8.8pt}{10.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-3pt}
+}
+
+\newcommand{\skillrow}[2]{%
+  {\bfseries\color{lcforest}\fontsize{8.8pt}{11pt}\selectfont #1} &
+  {\color{lcink}\fontsize{9.5pt}{11pt}\selectfont #2} \\[1.5pt]
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlinks (load last)
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=lcteal,
+  linkcolor=lcteal,
+  citecolor=lcteal,
+  pdftitle={Bryan Bugyi --- LangChain Resume},
+  pdfauthor={Bryan Bugyi}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document
+\begin{document}
+\color{lcink}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  HEADER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+  {\bfseries\color{lcforest}\fontsize{27pt}{29pt}\selectfont Bryan Bugyi} &
+  \begin{minipage}[b]{2.75in}
+    \raggedleft
+    {\color{lcslate}\fontsize{9.5pt}{12pt}\selectfont
+     Software Engineer\\
+     Agentic-AI Systems \& LLM Tooling}
+  \end{minipage}
+\end{tabular*}
+
+\vspace{5pt}
+\chainbar
+\vspace{5pt}
+
+\noindent
+{\color{lcink}\fontsize{9.2pt}{11pt}\selectfont%
+\textcolor{lcforest}{Email}\,\,\href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}%
+\midsep
+\textcolor{lcteal}{Phone}\,\,(609)~500-7081%
+\midsep
+\textcolor{lcforest}{GitHub}\,\,\href{https://github.com/bbugyi200}{bbugyi200}%
+\midsep
+\textcolor{lcteal}{LinkedIn}\,\,\href{https://linkedin.com/in/bryan-bugyi}{bryan-bugyi}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  PROFILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Profile}
+Software engineer with seven years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. For the past year, focused on \textbf{agentic-AI developer tooling}~--- architecting \textbf{\texttt{sase}}, a multi-agent software-engineering toolkit that orchestrates Claude, Gemini, and Codex into a managed pipeline with supervised agents, structured workflows, telemetry, and a plugin system for tool integrations. Translating recent agentic-coding research into a tool used daily for real engineering work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  EDUCATION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Education}
+\ressubheading{Rutgers University}{New Brunswick, NJ}{B.S.\ Computer Science (minor in Mathematics)}{September 2015 -- May 2019}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  EXPERIENCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Experience}
+
+\ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 -- present}
+\begin{itemize}
+  \item Full-stack engineer on Google Ad Manager; Java on the backend, Dart / AngularDart / Sass on the frontend.
+\end{itemize}
+
+\ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer / Senior Software Engineer}{January 2021 -- May 2022}
+\begin{itemize}
+  \item Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python portfolio.
+  \item Maintained Bloomberg's firm-wide Python cookiecutter, shaping new-project scaffolding across the company.
+  \item Authored the ``ChangeLog Driven Release'' (CLDR) methodology; adopted in alpha across the Compliance department.
+\end{itemize}
+
+\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 -- January 2021}
+\begin{itemize}
+  \item Led integration of \texttt{pylint} into a 1M+ line Python trading codebase; built the supporting tooling to make it stick.
+  \item Lead developer of Edgestream's Django-based investor-facing web portal.
+  \item Delivered large-scale improvements to the production team's in-house testing framework and test runner.
+\end{itemize}
+
+\ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 -- 2016}
+\begin{itemize}
+  \item Diagnosed large-scale network outages; automated recurring team workflows (ticketing, spreadsheet parsing, info retrieval) with Python.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Skills}
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{1.45in}@{\hspace{0.45em}}X@{}}
+\skillrow{AI / Agentic Systems}{multi-agent orchestration\,$\cdot$\,agent supervision\,$\cdot$\,prompt engineering\,$\cdot$\,LLM pipeline design\,$\cdot$\,Claude\,$\cdot$\,Gemini\,$\cdot$\,Codex\,$\cdot$\,structured tool use}
+\skillrow{Primary}{Python\,$\cdot$\,Linux\,$\cdot$\,TCP/IP\,$\cdot$\,Bash}
+\skillrow{Working}{C/C++\,$\cdot$\,Rust\,$\cdot$\,Perl\,$\cdot$\,Java\,$\cdot$\,JavaScript\,$\cdot$\,Haskell\,$\cdot$\,Vimscript}
+\skillrow{Tools}{Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,\LaTeX{}\,$\cdot$\,Vim\,$\cdot$\,Prometheus / Grafana}
+\skillrow{Frameworks}{FastAPI\,$\cdot$\,Django\,$\cdot$\,Flask\,$\cdot$\,Pluggy\,$\cdot$\,ZeroMQ\,$\cdot$\,Textual}
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SELECTED PROJECTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Selected Projects}
+
+\projsubheading{sase --- Structured Agentic Software Engineering}{Python}{Multi-agent toolkit orchestrating Claude, Gemini, and Codex.}{2025--present}
+\begin{itemize}
+  \item Architected the full system: \textbf{ACE} (multi-agent supervision TUI built on Textual), the \textbf{AXE} daemon, and a YAML-driven workflow engine that turns natural-language prompts into structured, multi-step agentic work.
+  \item Built a \texttt{pluggy}-based plugin system for VCS / workspace integrations (Git, GitHub, Chezmoi, Telegram, Gemini, Neovim), Prometheus telemetry surfacing 33 pipeline metrics, and a bead-based issue tracker for agent-owned task queues.
+  \item Grounded in current agentic-coding research (Hassan et~al.\ 2025; Vaziri et~al.\ 2024)~--- translating paper ideas into tools I ship software with daily.
+\end{itemize}
+
+\projsubheading{python-boltons/*}{Python}{Python libraries we think should be ``builtins''.}{2021--present}
+\begin{itemize}
+  \item Founder and lead developer of this series of projects. Notable boltons:
+  \vspace{-0.34cm}
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item cc-python (cookiecutter)
+      \item clack (config CLI lib)
+      \item eris (error-handling lib)
+      \item hush (plugin secrets lib)
+      \item logrus (logging lib)
+    \end{itemize}
+  \end{multicols}
+  \vspace{-0.36cm}
+\end{itemize}
+
+\projsubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
+\begin{itemize}
+  \item Rewrote black's string-handling logic ($\sim$3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132}; closed five unrelated user-filed issues in one shot.
+\end{itemize}
+
+\projsubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2021}
+\begin{itemize}
+  \item 500+ GitHub stars; accepted multiple external contributions (issues, bug reports, code).
+\end{itemize}
+
+\projsubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous open-source projects on GitHub.}{2017--present}
+\begin{itemize}
+  \item \texttt{greatday} (GTD todo manager)\,$\cdot$\,\texttt{cldr} (ChangeLog Driven Releases)\,$\cdot$\,\texttt{shv} (Rust shell-history viewer)\,$\cdot$\,\texttt{cookie} (templated file generator, 250+ stars).
+\end{itemize}
+
+\end{document}
