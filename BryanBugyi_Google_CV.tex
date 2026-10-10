@@ -168,7 +168,7 @@
 %  PROFILE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Profile}
-Software engineer with seven years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. Current focus: \textbf{agentic-AI developer tooling}~--- architecting \textbf{\texttt{sase}}, a multi-agent software-engineering toolkit that orchestrates Claude Code, Gemini CLI, and Codex into a managed pipeline, translating recent agentic-coding research into a tool used daily for real engineering work.
+Software engineer with seven years shipping production Python, Linux, and distributed-systems work across Google, Bloomberg, and Edgestream. Current focus: \textbf{agentic-AI developer tooling}~--- architecting \textbf{\texttt{sase}}, an open-source control plane that runs seven coding-agent CLIs (Claude Code, Codex, Antigravity, and others) as supervised, isolated, recorded engineering work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  EDUCATION
@@ -211,10 +211,10 @@ Software engineer with seven years shipping production Python, Linux, and distri
 \resheading{Skills}
 \noindent
 \begin{tabularx}{\textwidth}{@{}p{1.45in}@{\hspace{0.45em}}X@{}}
-\skillrow{AI / Agentic Systems}{Claude Code\,$\cdot$\,Gemini CLI\,$\cdot$\,Codex\,$\cdot$\,prompt engineering\,$\cdot$\,LLM orchestration\,$\cdot$\,multi-agent workflow design}
+\skillrow{AI / Agentic Systems}{seven coding-agent CLIs (Claude Code, Codex, Antigravity, and others)\,$\cdot$\,prompt engineering\,$\cdot$\,LLM orchestration\,$\cdot$\,multi-agent workflow design}
 \skillrow{Primary}{Python\,$\cdot$\,Linux\,$\cdot$\,TCP/IP networking\,$\cdot$\,Bash}
 \skillrow{Working}{C/C++\,$\cdot$\,Rust\,$\cdot$\,Perl\,$\cdot$\,Java\,$\cdot$\,JavaScript\,$\cdot$\,Haskell\,$\cdot$\,Vimscript}
-\skillrow{Tools}{Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,\LaTeX{}\,$\cdot$\,Vim\,$\cdot$\,Prometheus / Grafana}
+\skillrow{Tools}{Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,\LaTeX{}\,$\cdot$\,Vim}
 \skillrow{Frameworks}{Django\,$\cdot$\,FastAPI\,$\cdot$\,Flask\,$\cdot$\,Pluggy\,$\cdot$\,ZeroMQ\,$\cdot$\,Textual}
 \end{tabularx}
 
@@ -223,10 +223,10 @@ Software engineer with seven years shipping production Python, Linux, and distri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Selected Projects}
 
-\projsubheading{sase --- Structured Agentic Software Engineering}{Python}{Multi-agent toolkit orchestrating Claude, Gemini, and Codex.}{2025--present}
+\projsubheading{sase --- Structured Agentic Software Engineering}{Python}{Supports seven coding-agent CLIs (Claude Code, Codex, Antigravity, and others).}{2025--present}
 \begin{itemize}
   \item Architected the full system: \textbf{ACE} (multi-agent supervision TUI built on Textual), the \textbf{AXE} daemon, and a YAML-driven workflow engine that turns natural-language prompts into structured, multi-step agentic work.
-  \item Built a \texttt{pluggy}-based plugin system for VCS / workspace integrations (Git, GitHub, Chezmoi, Telegram, Gemini, Neovim), Prometheus telemetry surfacing 33 pipeline metrics, and a bead-based issue tracker for agent-owned task queues.
+  \item Built a plugin ecosystem spanning \texttt{sase-github}, \texttt{sase-telegram}, \texttt{sase-nvim}, \texttt{sase-listen}, and \texttt{sase-research-artifacts}; recorded telemetry in SQLite and tracked agent-owned task queues with beads.
   \item Grounded in current agentic-coding research (Hassan et~al.\ 2025; Vaziri et~al.\ 2024)~--- translating paper ideas into tools I ship software with daily.
 \end{itemize}
 
