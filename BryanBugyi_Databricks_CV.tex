@@ -1,4 +1,4 @@
-% Bryan Bugyi --- Resume (Databricks / Agentic-AI Platform variant).
+% Bryan Bugyi --- Resume (Databricks / agent-platform variant).
 %
 % Layout heritage: original article-class resume scaffolding by
 %   (c) 2002 Matthew Boedicker <mboedick@mboedick.org>
@@ -7,25 +7,24 @@
 % This work is licensed under CC BY-NC-SA 2.5
 % (http://creativecommons.org/licenses/by-nc-sa/2.5/).
 %
-% Adapted 2026 for Databricks Agent Quality & AI Platform teams:
-% Databricks brand palette (crimson/flame red anchor with deep navy slate),
-% sans-first IBM Plex typography, tight vertical budget, framed for
-% agentic systems, developer platforms, and testing infrastructure.
+% Adapted 2026 from the LangChain variant into a Databricks-flavored palette:
+% navy anchor with lava accent and a stacked "layer" rule, framed for the
+% NYC Agent Quality (P-1567) and AI Platform backend (P-1591) roles.
 
 \documentclass[letterpaper,10pt]{article}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry
-\usepackage[letterpaper,margin=0.55in,top=0.48in,bottom=0.48in]{geometry}
+\usepackage[letterpaper,margin=0.55in,top=0.48in,bottom=0.45in]{geometry}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Palette --- "Databricks Flame & Slate"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Palette --- "Lakehouse"
 \usepackage[svgnames]{xcolor}
-\definecolor{dbred}{HTML}{FF3621}       % Databricks signature flame red
-\definecolor{dbcrimson}{HTML}{D92B18}   % Deeper crimson accent
-\definecolor{dbnavy}{HTML}{1B3139}      % Databricks dark spruce navy
-\definecolor{dbink}{HTML}{11191C}       % Crisp body ink
-\definecolor{dbstone}{HTML}{5A6B73}     % Secondary slate metadata
-\definecolor{dbline}{HTML}{D6DFE2}      % Clean rule divider
-\definecolor{dbsoft}{HTML}{F6F9FA}      % Subtle background highlight
+\definecolor{dbxnavy}{HTML}{1B3139}
+\definecolor{dbxdeep}{HTML}{2C4A55}
+\definecolor{dbxlava}{HTML}{FF3621}
+\definecolor{dbxember}{HTML}{C22C1B}
+\definecolor{dbxink}{HTML}{161E22}
+\definecolor{dbxslate}{HTML}{5A6F77}
+\definecolor{dbxline}{HTML}{DCE0E2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Typography
 \usepackage{plex-sans}
@@ -36,182 +35,192 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Layout / structure packages
 \usepackage{enumitem}
-\usepackage{fancyhdr}
-\usepackage{multicol}
 \usepackage{tabularx}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page style
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\fancyfoot[C]{{\color{dbstone}\fontsize{8pt}{9.5pt}\selectfont\thepage}}
+\pagestyle{empty}
 
 \raggedbottom
 \raggedright
-\setlength{\parskip}{2.5pt}
+\setlength{\parskip}{3pt}
 \setlength{\parindent}{0pt}
 \setlength{\tabcolsep}{0pt}
 \frenchspacing
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Small helpers
-\newcommand{\midsep}{\,\textcolor{dbline}{\textbullet}\,}
-
-% Databricks accent bar: 1/3 flame red + 2/3 deep spruce navy with subtle hairline
-\newcommand{\databricksbar}{%
-  \noindent
-  \textcolor{dbred}{\rule{0.30\textwidth}{2.0pt}}%
-  \textcolor{dbnavy}{\rule{0.70\textwidth}{2.0pt}}%
-  \par\vspace{1.5pt}%
-  \noindent\textcolor{dbline}{\rule{\textwidth}{0.35pt}}%
+\newcommand{\midsep}{\,\textcolor{dbxline}{\textbullet}\,}
+% Layer rule: three stacked strokes that thin out as they descend, a nod to
+% the stacked-layer mark without reproducing it.
+\newcommand{\layerbar}{%
+  \noindent\textcolor{dbxlava}{\rule{\textwidth}{1.8pt}}%
+  \par\vspace{1.4pt}%
+  \noindent\textcolor{dbxember}{\rule{\textwidth}{0.8pt}}%
+  \par\vspace{1.4pt}%
+  \noindent\textcolor{dbxnavy}{\rule{\textwidth}{0.35pt}}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Section heading
 \newcommand{\resheading}[1]{%
-  \par\addvspace{8pt}%
+  \par\addvspace{7pt}%
   \noindent
-  {\bfseries\color{dbnavy}\fontsize{9.8pt}{11.8pt}\selectfont%
-   \textls*[85]{\MakeUppercase{#1}}}%
+  {\color{dbxlava}\rule[0.12ex]{0.55em}{0.55em}}\hspace{0.45em}%
+  {\bfseries\color{dbxnavy}\fontsize{10pt}{12pt}\selectfont%
+   \textls*[90]{\MakeUppercase{#1}}}%
   \hspace{0.65em}%
-  {\color{dbline}\leaders\hrule height 0.45pt\hfill\kern0pt}%
-  \par\nobreak\addvspace{2.5pt}%
+  {\color{dbxline}\leaders\hrule height 0.45pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{2pt}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bullets
 \setlist[itemize,1]{
-  label={\textcolor{dbred}{\textbf{\footnotesize\textsf{$\blacktriangleright$}}}},
-  leftmargin=1.35em,
+  label={\textcolor{dbxlava}{\scriptsize$\blacklozenge$}},
+  leftmargin=1.3em,
   topsep=1pt,
-  itemsep=1.5pt,
-  parsep=0pt
-}
-\setlist[itemize,2]{
-  label={\textcolor{dbstone}{\textendash}},
-  leftmargin=1.15em,
-  topsep=0pt,
-  itemsep=0pt,
+  itemsep=1.2pt,
   parsep=0pt
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom commands
 % Company / location / role / dates.
 \newcommand{\ressubheading}[4]{%
-  \par\addvspace{3pt}%
+  \par\addvspace{2pt}%
   \noindent
   \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-    {\bfseries\color{dbink}\fontsize{10.2pt}{12.2pt}\selectfont #1} &
-    {\color{dbstone}\fontsize{9.0pt}{10.8pt}\selectfont #2} \\[0.5pt]
-    {\color{dbink}\fontsize{9.7pt}{11.5pt}\selectfont #3} &
-    {\color{dbstone}\fontsize{8.6pt}{10.2pt}\selectfont #4}
-  \end{tabular*}\par\vspace{-2.5pt}
-}
-
-% Project / tech-stack / tagline / dates.
-\newcommand{\projsubheading}[4]{%
-  \par\addvspace{3pt}%
-  \noindent
-  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-    {\bfseries\color{dbink}\fontsize{10.2pt}{12.2pt}\selectfont #1} &
-    {\ttfamily\color{dbstone}\fontsize{8.5pt}{10.1pt}\selectfont #2} \\[0.5pt]
-    {\color{dbink}\fontsize{9.7pt}{11.5pt}\selectfont #3} &
-    {\color{dbstone}\fontsize{8.6pt}{10.2pt}\selectfont #4}
-  \end{tabular*}\par\vspace{-2.5pt}
+    {\bfseries\color{dbxink}\fontsize{10.4pt}{12.4pt}\selectfont #1} &
+    {\color{dbxslate}\fontsize{9.2pt}{11pt}\selectfont #2} \\[0.5pt]
+    {\color{dbxdeep}\fontsize{9.9pt}{11.7pt}\selectfont #3} &
+    {\color{dbxslate}\fontsize{8.8pt}{10.5pt}\selectfont #4}
+  \end{tabular*}\par\vspace{-3pt}
 }
 
 \newcommand{\skillrow}[2]{%
-  {\bfseries\color{dbnavy}\fontsize{8.8pt}{10.8pt}\selectfont #1} &
-  {\color{dbink}\fontsize{9.3pt}{10.8pt}\selectfont #2} \\[1.5pt]
+  {\bfseries\color{dbxnavy}\fontsize{8.8pt}{11pt}\selectfont #1} &
+  {\color{dbxink}\fontsize{9.4pt}{11pt}\selectfont #2} \\[1.2pt]
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlinks (load last)
 \usepackage{hyperref}
 \hypersetup{
   colorlinks=true,
-  urlcolor=dbcrimson,
-  linkcolor=dbcrimson,
-  citecolor=dbcrimson,
-  pdftitle={Bryan Bugyi --- Databricks Resume},
-  pdfauthor={Bryan Bugyi}
+  urlcolor=dbxember,
+  linkcolor=dbxember,
+  citecolor=dbxember,
+  pdftitle={Bryan Bugyi --- Resume},
+  pdfauthor={Bryan Bugyi},
+  pdfkeywords={Python, Rust, agent infrastructure, evaluation, AI platform, developer tooling, CI/CD, SRE}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document
 \begin{document}
-\color{dbink}
+\color{dbxink}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  HEADER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
 \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-  {\bfseries\color{dbnavy}\fontsize{26pt}{28pt}\selectfont Bryan Bugyi} &
-  \begin{minipage}[b]{3.0in}
+  {\bfseries\color{dbxnavy}\fontsize{27pt}{29pt}\selectfont Bryan Bugyi} &
+  \begin{minipage}[b]{3.1in}
     \raggedleft
-    {\color{dbstone}\fontsize{9.5pt}{12pt}\selectfont
+    {\color{dbxslate}\fontsize{9.5pt}{12pt}\selectfont
      Software Engineer\\
-     Agentic-AI Platforms, Evaluation \& Systems}
+     Python, Reliability \& Agent Infrastructure}
   \end{minipage}
 \end{tabular*}
 
 \vspace{4pt}
-\databricksbar
+\layerbar
 \vspace{4pt}
 
+% TODO(bryan): append "\midsep NYC metro" (or your town) if accurate; both
+% target roles are New York City postings.
 \noindent
-{\color{dbink}\fontsize{9.0pt}{10.8pt}\selectfont%
-\textcolor{dbnavy}{Email}\,\,\href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}%
+{\color{dbxink}\fontsize{9.2pt}{11pt}\selectfont%
+\textcolor{dbxnavy}{Email}\,\,\href{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}%
 \midsep
-\textcolor{dbred}{Phone}\,\,(609)~500-7081%
+\textcolor{dbxnavy}{Phone}\,\,(609)~500-7081%
 \midsep
-\textcolor{dbnavy}{GitHub}\,\,\href{https://github.com/bbugyi200}{bbugyi200}%
+\textcolor{dbxnavy}{GitHub}\,\,\href{https://github.com/bbugyi200}{bbugyi200}%
 \midsep
-\textcolor{dbred}{LinkedIn}\,\,\href{https://linkedin.com/in/bryan-bugyi}{bryan-bugyi}%
+\textcolor{dbxnavy}{LinkedIn}\,\,\href{https://linkedin.com/in/bryan-bugyi}{bryan-bugyi}%
 \midsep
-\textcolor{dbnavy}{Web}\,\,\href{https://sase.sh}{sase.sh}%
+\textcolor{dbxnavy}{Web}\,\,\href{https://sase.sh}{sase.sh}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  PROFILE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Profile}
-Software engineer with eight years building production Python, Rust, and distributed systems across Google, Bloomberg, and Edgestream. For the past six months, full-time architect and maintainer of \textbf{\texttt{sase}} (\href{https://sase.sh}{sase.sh}), an open-source multi-agent developer platform and meta-harness unifying 7 coding-agent harnesses (Claude Code, Codex, Antigravity, Qwen Code, OpenCode, Muse Code, Grok Build) behind isolated workspaces, typed approval gates, and deterministic evaluation benches. Proven track record in high-throughput backend services, extensible test frameworks, and mission-critical developer tooling.
+Software engineer with seven years of production Python, SRE, and developer-tooling work at Google, Bloomberg, and Edgestream. Since May 2026, building \textbf{\texttt{sase}} full-time: an open-source control plane that runs seven coding-agent CLIs as supervised, isolated, recorded engineering work~--- the same problem space as Databricks' Omnigent. I focus on the infrastructure that makes agent work trustworthy: durable run records, regression triage that separates new failures from known and flaky ones, deterministic test harnesses, and human-approval gates.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  EXPERIENCE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Experience}
 
-\ressubheading{SASE (sase.sh)}{New York, NY}{Founder \& Lead Software Engineer}{May 2026 -- Present}
+\ressubheading{sase --- Structured Agentic Software Engineering}{Open source \midsep \href{https://github.com/sase-org/sase}{sase-org/sase}}{Creator \& Lead Engineer (independent, full-time)}{May 2026 -- present}
 \begin{itemize}
-  \item Architected and developed \textbf{\texttt{sase}}, an open-source meta-harness and multi-agent execution platform supporting 7 agent harnesses behind a unified provider abstraction (\texttt{llm\_provider/base.py}) with model routing and isolated git workspaces.
-  \item Engineered high-performance backend domain services in Rust (\texttt{sase-core-rs}) paired with a Python 3.12+ control plane and the \textbf{AXE} daemon scheduler for reliable, non-blocking multi-agent execution.
-  \item Built the \textbf{\texttt{fakey}} deterministic conformance harness to simulate LLM streaming, token limits, interrupts, retries, and failure modes, enabling hermetic, zero-cost regression testing of agent lifecycles.
-  \item Designed human-in-the-loop governance primitives including typed gates (plan, questions, sudo) with persisted audit trails, queue budgets, and Prometheus telemetry surfacing 33+ pipeline and agent health metrics.
+  \item Designed one provider contract over seven agent CLIs (Claude Code, Codex, Antigravity, Qwen Code, OpenCode, Muse Code, Grok Build) with cross-provider model routing. Each agent is a single-turn job in an atomically claimed workspace clone; the host, never the agent, commits, opens PRs, and records the outcome.
+  \item Built the verification layer agents work inside: every check or test execution becomes a durable \textbf{ToolRun} record (before/after repository fingerprints, normalized failure signatures) with a triage verdict~--- \texttt{NEW}, \texttt{KNOWN}, \texttt{FLAKY}, or \texttt{UNKNOWN}~--- where \texttt{KNOWN} requires an independent witness and exit codes are never masked.
+  \item Wrote \texttt{fakey}, a deterministic fake provider that drives the real launch, streaming, retry, and interrupt paths with no model calls; paired it with a per-commit fast CI gate, a scheduled exhaustive CI lane, and a flake-baseline gate.
+  \item Moved shared backend logic into a required Rust core (\href{https://github.com/sase-org/sase-core}{\texttt{sase-core}}, PyO3 bindings) that also serves an authenticated HTTP gateway for mobile clients and multi-machine dispatch, plus a SQLite telemetry store.
+  \item Shipped typed human-approval gates (plan, question, launch, sudo) answerable from the Textual TUI, CLI, Telegram, or phone, with every decision recorded.
+  \item Started as a side project in 2025; now my daily engineering environment~--- sase is developed by agents running under sase. Released on PyPI (MIT) with docs at \href{https://sase.sh}{sase.sh}.
 \end{itemize}
 
+% TODO(bryan): add one or two concrete, non-confidential Ad Manager bullets
+% (a system or feature you owned, a launch, a migration, a reliability fix,
+% a cross-team decision). The AI Platform backend posting screens for
+% "distributed systems, scalable APIs" and this entry carries that story.
+% Do not add scale numbers you cannot defend in an interview.
 \ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 -- May 2026}
 \begin{itemize}
-  \item Full-stack software engineer on Google Ad Manager; engineered high-throughput, low-latency Java backend services and modern web applications using Dart / AngularDart / Sass.
-  \item Maintained 99.99\%+ availability and strict latency SLAs across globally distributed ad-serving and reporting pipelines processing billions of daily events.
-  \item Collaborated across cross-functional infrastructure teams to design resilient APIs, internal developer workflows, and automated release validation pipelines.
+  \item Full-stack engineer on Google Ad Manager; Java on the backend, Dart / AngularDart / Sass on the frontend.
 \end{itemize}
 
+% TODO(bryan): if you can, add one SRE bullet with a defensible specific
+% (on-call scope, SLO/alerting work, an outage you resolved, services owned).
+% Agent Quality screens for "reliability, correctness, and operational maturity".
 \ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer / Senior Software Engineer}{January 2021 -- May 2022}
 \begin{itemize}
-  \item Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python service and tooling portfolio.
-  \item Maintained Bloomberg's firm-wide Python project cookiecutter, standardizing dependency management, test scaffolding, and CI/CD quality gates across hundreds of engineering teams.
-  \item Authored and rolled out the ``ChangeLog Driven Release'' (CLDR) methodology, adopted in alpha across the Compliance department to automate release verification and auditable semantic versioning.
+  \item Founding engineer on the Compliance SRE (CSRE) team; technical lead across the team's Python portfolio.
+  \item Authored the ``ChangeLog Driven Release'' (CLDR) release methodology and tooling; adopted in alpha across the Compliance department.
+  \item Maintained Bloomberg's firm-wide Python cookiecutter, shaping new-project scaffolding across the company.
 \end{itemize}
 
 \ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 -- January 2021}
 \begin{itemize}
-  \item Architected large-scale enhancements to the production department's in-house testing framework and test runner, accelerating test suite execution and test determinism for automated Linux trading systems.
-  \item Spearheaded integration of \texttt{pylint} across a legacy codebase of 1M+ lines of Python; built custom static analysis extensions and CI tools to enforce code quality without degrading developer velocity.
-  \item Lead developer of Edgestream's investor-facing portal, built with Python, Django, and PostgreSQL.
+  \item Delivered large-scale improvements to the production team's in-house testing framework and test runner.
+  \item Led integration of \texttt{pylint} into a 1M+ line Python trading codebase; built the supporting tooling to make it stick.
+  \item Lead developer of Edgestream's Django-based investor-facing web portal.
 \end{itemize}
 
 \ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 -- 2016}
 \begin{itemize}
-  \item Diagnosed chronic network outages across carrier-grade infrastructure; automated frequent department data-aggregation and ticketing workflows using Python scripting.
+  \item Diagnosed large-scale network outages; automated recurring team workflows (ticketing, spreadsheet parsing, info retrieval) with Python.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SKILLS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Skills}
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{1.35in}@{\hspace{0.45em}}>{\raggedright\arraybackslash}X@{}}
+\skillrow{Agent Systems}{provider adapters\,$\cdot$\,workflow orchestration\,$\cdot$\,regression triage\,$\cdot$\,flake detection\,$\cdot$\,human-approval gates\,$\cdot$\,Claude Code\,$\cdot$\,Codex}
+\skillrow{Primary}{Python\,$\cdot$\,Linux\,$\cdot$\,Bash\,$\cdot$\,TCP/IP networking}
+\skillrow{Working}{Rust\,$\cdot$\,Java\,$\cdot$\,Dart\,$\cdot$\,C/C++\,$\cdot$\,JavaScript\,$\cdot$\,SQL}
+\skillrow{Infrastructure}{pytest\,$\cdot$\,GitHub Actions\,$\cdot$\,Docker\,$\cdot$\,Git\,$\cdot$\,PostgreSQL\,$\cdot$\,SQLite\,$\cdot$\,Redis\,$\cdot$\,PyO3}
+\skillrow{Frameworks}{Textual\,$\cdot$\,FastAPI\,$\cdot$\,Django\,$\cdot$\,Flask\,$\cdot$\,Pluggy\,$\cdot$\,ZeroMQ}
+\end{tabularx}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  SELECTED OPEN SOURCE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\resheading{Selected Open Source}
+\begin{itemize}
+  \item \textbf{psf/black}~--- rewrote the formatter's string-handling logic ($\sim$3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132} (merged 2020), closing five unrelated user-filed issues.
+  \item \textbf{bbugyi200/*}~--- \texttt{funky} (650+ stars; shell-function manager)\,$\cdot$\,\texttt{cookie} (280+ stars; templated file generator)\,$\cdot$\,\texttt{cldr} (ChangeLog Driven Releases)\,$\cdot$\,\texttt{shv} (Rust shell-history viewer).
+  \item \textbf{python-boltons/*}~--- founder and lead developer: \texttt{cc-python}, \texttt{clack}, \texttt{eris}, \texttt{hush}, \texttt{logrus}.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -219,48 +228,5 @@ Software engineer with eight years building production Python, Rust, and distrib
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \resheading{Education}
 \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S.\ Computer Science (minor in Mathematics)}{September 2015 -- May 2019}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  SKILLS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Skills}
-\noindent
-\begin{tabularx}{\textwidth}{@{}p{1.45in}@{\hspace{0.45em}}X@{}}
-\skillrow{AI \& Agentic Systems}{Multi-agent orchestration\,$\cdot$\,meta-harness design\,$\cdot$\,agent evaluation \& benchmarking\,$\cdot$\,conformance harnesses\,$\cdot$\,Claude Code\,$\cdot$\,Codex\,$\cdot$\,Antigravity\,$\cdot$\,prompt engineering\,$\cdot$\,structured tool use}
-\skillrow{Languages}{Python (3.12+)\,$\cdot$\,Rust\,$\cdot$\,Java\,$\cdot$\,C/C++\,$\cdot$\,Bash\,$\cdot$\,SQL\,$\cdot$\,Dart\,$\cdot$\,Perl\,$\cdot$\,JavaScript\,$\cdot$\,\LaTeX{}}
-\skillrow{Systems \& Reliability}{Linux internals\,$\cdot$\,TCP/IP networking\,$\cdot$\,distributed systems\,$\cdot$\,CI/CD pipelines\,$\cdot$\,test automation frameworks\,$\cdot$\,observability (Prometheus / Grafana)}
-\skillrow{Data \& Tools}{Git\,$\cdot$\,Docker\,$\cdot$\,PostgreSQL\,$\cdot$\,Redis\,$\cdot$\,ZeroMQ\,$\cdot$\,Pluggy\,$\cdot$\,FastAPI\,$\cdot$\,Django\,$\cdot$\,Textual\,$\cdot$\,Vim}
-\end{tabularx}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  SELECTED PROJECTS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Selected Open-Source Projects}
-
-\projsubheading{sase --- Structured Agentic Software Engineering}{Python, Rust}{Multi-agent meta-harness platform orchestrating 7 coding agents.}{2025--present}
-\begin{itemize}
-  \item Unified 7 provider CLIs behind a single interface with isolated workspace directories, YAML-driven multi-step workflows, and a Textual-based terminal supervision console (\textbf{ACE}).
-  \item Implemented deterministic replay and failure benchmarking with the \texttt{fakey} conformance harness; published detailed documentation, release notes, and guides at \href{https://sase.sh}{sase.sh}.
-\end{itemize}
-
-\projsubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
-\begin{itemize}
-  \item Overhauled Black's string-handling engine ($\sim$3{,}500 LoC) in \href{https://github.com/psf/black/pull/1132}{PR \#1132}; resolved five distinct, longstanding open GitHub issues.
-\end{itemize}
-
-\projsubheading{python-boltons/*}{Python}{Modular production Python libraries built for enterprise stability.}{2021--present}
-\begin{itemize}
-  \item Founder and maintainer of open-source libraries: \texttt{cc-python} (cookiecutter), \texttt{clack} (CLI configuration), \texttt{eris} (typed error handling), \texttt{hush} (plugin secrets), and \texttt{logrus} (structured logging).
-\end{itemize}
-
-\projsubheading{bbugyi200/funky}{Python, Shell}{Interactive shell function manager (500+ GitHub stars).}{2017--2021}
-\begin{itemize}
-  \item Created shell utility with active community adoption, accepting external code contributions and feature requests.
-\end{itemize}
-
-\projsubheading{bbugyi200/*}{Python, Rust, Shell}{Selected utilities and systems tooling.}{2017--present}
-\begin{itemize}
-  \item \texttt{cookie} (template file generator, 250+ stars)\,$\cdot$\,\texttt{shv} (Rust shell-history viewer)\,$\cdot$\,\texttt{cldr} (ChangeLog Driven Releases)\,$\cdot$\,\texttt{greatday} (GTD task manager).
-\end{itemize}
 
 \end{document}
