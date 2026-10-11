@@ -1,242 +1,242 @@
-% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
-% (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com> http://www.davidgrant.ca
-% (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com> http://www.nathanieljohnston.com
+% Bryan Bugyi --- CV (2026 redesign).
 %
-%This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 2.5 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/2.5/ or send a letter to Creative Commons, 543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+% Layout heritage: article-class resume scaffolding by Matthew Boedicker (2002),
+% David J. Grant (2003-2007) and Nathaniel Johnston (2008), CC BY-NC-SA 2.5.
+% Rebuilt in 2026 on IBM Plex; macros are new.
+%
+% One source, two editions (build with `make`):
+%   One-page default:     pdflatex BryanBugyi_CV.tex
+%   Two-page extended:    pdflatex -jobname=BryanBugyi_CV_extended "\def\fullcv{}\input{BryanBugyi_CV}"
+%
+% \more{...} content appears only in the extended edition; \short{...} only in the
+% one-page default. Facts must never differ between editions --- only selection.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Header Declarations
-\documentclass[letterpaper,11pt]{article}
-\usepackage{booktabs}
-\usepackage{etoolbox}
-\usepackage{framed}
-\usepackage{tocloft}
-\usepackage{hyperref}
-\usepackage{multicol}
-\usepackage{tabularx}
-\usepackage[svgnames]{xcolor}
+\documentclass[letterpaper,10pt]{article}
 
-% Standalone replacements for the unavailable gutils.tex.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Edition toggle
+\newif\iffull
+\ifdefined\fullcv \fulltrue \fi
+\newcommand{\more}[1]{\iffull#1\fi}
+\newcommand{\short}[1]{\iffull\else#1\fi}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Geometry
+\iffull
+  \usepackage[letterpaper,hmargin=0.7in,top=0.6in,bottom=0.6in]{geometry}
+\else
+  \usepackage[letterpaper,hmargin=0.6in,top=0.5in,bottom=0.45in]{geometry}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Palette: ink, muted, one teal accent, hairline
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{1B2026}     % body text     16.4:1 on white
+\definecolor{muted}{HTML}{5B6670}   % dates, places  5.9:1
+\definecolor{accent}{HTML}{0E6366}  % titles, links  7.0:1
+\definecolor{hair}{HTML}{CFD6DD}    % rules only (decorative)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Typography
+\usepackage[T1]{fontenc}
+\usepackage[sfdefault,semibold]{plex-sans}
+\usepackage[scale=0.9]{plex-mono}
+\usepackage[protrusion=true,expansion=true,tracking=true]{microtype}
+\input{glyphtounicode}\pdfgentounicode=1  % clean copy/paste and ATS extraction
+\frenchspacing
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page style
 \usepackage{enumitem}
-\usepackage[normalem]{ulem}
-\usepackage{xparse}
-\let\declarecommand\DeclareDocumentCommand
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Style Settings
-\newlength{\outerbordwidth}
+\usepackage{needspace}
 \pagestyle{empty}
-\raggedbottom
 \raggedright
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0pt}
+\iffull\linespread{1.1}\else\linespread{1.05}\fi
 
-\robustify\cftdotfill
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Building blocks
+\newcommand{\sep}{\hspace{0.4em}{\color{hair}\textbullet}\hspace{0.4em}}
+\newcommand{\code}[1]{\texttt{#1}}
 
+% Section heading: tracked capitals in the accent, hairline to the margin.
+\newcommand{\cvsection}[1]{%
+  \par\addvspace{\iffull 12pt\else 7pt\fi}\needspace{3\baselineskip}%
+  \noindent{\color{accent}\bfseries\fontsize{9.4pt}{11pt}\selectfont
+    \textls[80]{\MakeUppercase{#1}}}%
+  \hspace{0.7em}{\color{hair}\leaders\hrule height 0.5pt\hfill\kern0pt}%
+  \par\nobreak\addvspace{\iffull 4pt\else 2.5pt\fi}%
+}
+
+% Role heading: {organisation}{context}{dates}{title}{place}
+\newcommand{\role}[5]{%
+  \par\addvspace{\iffull 8pt\else 4.5pt\fi}\needspace{3\baselineskip}%
+  \noindent\begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    {\bfseries\fontsize{10.6pt}{12.6pt}\selectfont #1}%
+      \if\relax\detokenize{#2}\relax\else{\color{muted}\sep #2}\fi &
+    {\color{muted}\fontsize{9.4pt}{11pt}\selectfont #3} \\[0.2pt]
+    {\color{accent}\bfseries\fontsize{9.6pt}{11.5pt}\selectfont #4} &
+    {\color{muted}\fontsize{9.4pt}{11pt}\selectfont #5}
+  \end{tabular*}\par\nobreak
+}
+
+% Skill row with a hanging label column.
+\newcommand{\skill}[2]{%
+  \par\hangindent=1.1in\hangafter=1\noindent
+  \makebox[1.1in][l]{\bfseries\color{muted}\fontsize{9.2pt}{11pt}\selectfont #1}#2\par
+  \addvspace{\iffull 2.5pt\else 1.4pt\fi}%
+}
+
+% Bullets: a small round bullet in the accent (extracts as a real bullet character).
+\setlist[itemize]{
+  label={\color{accent}\small\textbullet},
+  leftmargin=1.0em, labelsep=0.5em,
+  topsep=\iffull 3pt\else 1.5pt\fi,
+  itemsep=\iffull 2.6pt\else 1.1pt\fi, parsep=0pt, partopsep=0pt
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hyperlinks (load last)
+\usepackage[hidelinks]{hyperref}
 \hypersetup{
-    colorlinks=false,
+  pdftitle={Bryan Bugyi --- Software Engineer CV},
+  pdfauthor={Bryan Bugyi},
+  pdfsubject={Software Engineer: developer tools, reliability, agent infrastructure},
+  pdfkeywords={Software Engineer, Python, Java, Dart, Rust, developer tools, reliability, SRE, CI/CD, release engineering, coding agents, Google Ad Manager}
 }
+\newcommand{\link}[2]{\href{#1}{\color{accent}#2}}
 
-\setlength{\outerbordwidth}{3pt}  % Width of border outside of title bars
-\definecolor{shadecolor}{gray}{0.75}  % Outer background color of title bars (0 = black, 1 = white)
-\definecolor{shadecolorB}{gray}{0.93}  % Inner background color of title bars
-
-
-% ----- Margin
-\setlength{\evensidemargin}{-0.25in}
-\setlength{\headheight}{0in}
-\setlength{\headsep}{0in}
-\setlength{\oddsidemargin}{-0.25in}
-\setlength{\paperheight}{11in}
-\setlength{\paperwidth}{8.5in}
-\setlength{\tabcolsep}{0in}
-\setlength{\textheight}{9.5in}
-\setlength{\textwidth}{7in}
-\setlength{\topmargin}{-0.3in}
-\setlength{\topskip}{0in}
-\setlength{\voffset}{0.1in}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Custom Commands
-\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
-\newcommand{\resheading}[1]{\vspace{8pt}
-  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
-    \begin{shaded}
-\setlength{\fboxsep}{0pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\sffamily{\mbox{~}\makebox[6.762in][l]{\large #1} \vphantom{p\^{E}}}}}}
-    \end{shaded}
-  }\vspace{-5pt}
-}
-\newcommand{\ressubheading}[4]{
-\begin{tabular*}{6.5in}{l@{\cftdotfill{\cftsecdotsep}\extracolsep{\fill}}r}
-		\textbf{#1} & #2 \\
-		\textit{#3} & \textit{#4} \\
-\end{tabular*}\vspace{-6pt}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Start of CV
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document
 \begin{document}
+\color{ink}
 
-\begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-\textbf{\Large Bryan Bugyi} & \textbf{\today} \\
-Software Engineer & bryanbugyi34@gmail.com \\
-    https://linkedin.com/in/bryan-bugyi & (609)500-7081\\
-\end{tabular*}
-\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HEADER
+\noindent{\bfseries\fontsize{26pt}{28pt}\selectfont Bryan Bugyi}\par
+\vspace{3pt}
+\noindent{\color{accent}\fontsize{10.8pt}{13pt}\selectfont
+  Software Engineer\sep Developer Tools, Reliability \& Agent Infrastructure}\par
+\vspace{2.5pt}
+\noindent{\color{muted}\fontsize{9.4pt}{11.5pt}\selectfont
+  \link{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}\sep
+  \link{tel:+16095007081}{(609) 500-7081}\sep
+  % TODO(bryan): insert your confirmed town or metro here, e.g. "Cranford, NJ (NYC metro)\sep".
+  \link{https://github.com/bbugyi200}{github.com/bbugyi200}\sep
+  \link{https://linkedin.com/in/bryan-bugyi}{linkedin.com/in/bryan-bugyi}\sep
+  \link{https://sase.sh}{sase.sh}}\par
+\vspace{5pt}
+\noindent{\color{accent}\rule[-0.5pt]{0.9in}{1.6pt}}{\color{hair}\leaders\hrule height 0.5pt\hfill\kern0pt}\par
+\vspace{\iffull 8pt\else 5pt\fi}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  SUMMARY                                                %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Summary}
-I am a Software Engineer with a very ``systems''-oriented skill set. In particular, I have the following areas of expertise / specialization: \hspace{1pt} \textbf{Python} programming, \textbf{Linux}, and \textbf{Networking} (TCP/IP)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SUMMARY
+\noindent
+Software engineer with seven years at Google, Bloomberg, and Edgestream, focused on making
+change safe to ship: launches, shard migrations, and release on-call at Google; SRE and release
+process at Bloomberg; test and lint tooling at Edgestream. Since May 2026,
+building \textbf{sase} full-time: open-source supervision and verification for coding agents.\par
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  EDUCATION                                              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Education}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIENCE
+\cvsection{Experience}
+
+\role{sase}{open-source platform for coding agents}{May 2026 -- Present}
+     {Creator \& Lead Engineer (independent, full-time)}{\link{https://sase.sh}{sase.sh}}
 \begin{itemize}
-\item
-    \ressubheading{Rutgers University}{New Brunswick, NJ}{B.S. Computer Science (minor in Mathematics)}{2015 - 2019}
+  \item Designed one provider contract over seven coding-agent CLIs (Claude Code, Codex,
+        Antigravity, and four more); each run gets its own workspace clone, and the host, not
+        the agent, commits, opens pull requests, and records the outcome.
+  \item Built the verification layer: every check and test run becomes a durable record with a
+        normalized failure signature and a new/known/flaky/unknown verdict; ``known'' needs an
+        independent witness, and exit codes are never masked.
+  \item Wrote \code{fakey}, a deterministic fake provider that drives the real launch, streaming,
+        retry, and interrupt paths with no model calls, behind a per-commit release gate and a
+        scheduled exhaustive CI lane.
+  \item Moved shared logic into a required Rust core (PyO3) that also serves an authenticated
+        gateway for phones and remote machines; added typed approval gates (plans, launches, sudo)
+        answerable from the TUI, CLI, or Telegram.
+  \more{\item Started as a 2025 side project; 29 PyPI releases since Feb 2026 (MIT license); now
+        developed day to day by agents running under sase.}
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  INDUSTRY EXPERIENCE                                    %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Industry Experience}
+\role{Google}{Ad Manager}{Jun 2022 -- May 2026}
+     {Software Engineer}{New York, NY}
 \begin{itemize}
-    \item
-    \ressubheading{sase --- Structured Agentic Software Engineering}{Open source}{Creator \& Lead Engineer (independent, full-time)}{May 2026 -- present} \vspace{2pt}
-    \begin{itemize}
-        \resitem{Designed one provider contract over seven coding-agent CLIs (Claude Code, Codex, Antigravity, and others).}
-        \resitem{Built ToolRun records for checks and tests, with regression triage that distinguishes failures without masking exit codes.}
-        \resitem{Started as a side project in 2025; now my daily engineering environment. Released on PyPI (MIT) with docs at \href{https://sase.sh}{sase.sh}.}
-    \end{itemize}
-
-    \item
-    \ressubheading{Google}{Manhattan, NY}{Software Engineer}{June 2022 - May 2026} \vspace{8pt}
-
-        Supported Google Ad Manager on a full-stack team, working with Java on
-        the backend and Dart[1] \slash AngularDart[2] \slash Sass[3] on
-        the frontend. \vspace{6pt}
-
-        
-        [1]: https://dart.dev/guides
-
-        [2]: https://angulardart.xyz/guide
-
-        [3]: https://sass-lang.com
-
-    \item
-    \ressubheading{Bloomberg L.P.}{Manhattan, NY}{Site Reliability Engineer (SRE) / Senior Software Engineer}{January 2021 - May 2022} \vspace{8pt}
-
-        SREs at Bloomberg use both software and systems engineering to build and reliably run their production systems. I am a founding member of the Compliance SRE (CSRE) team. A few notable achievements associated with my work at Bloomberg are listed below:
-	\begin{itemize}
-            \resitem{Lead Software Engineer for most software projects (primarily Python) on the CSRE team.}
-            \resitem{Maintainer of Bloomberg's community cookiecutter for Python projects.}
-            \resitem{Founder of new ``ChangeLog Driven Release (CLDR)'' methodology (alpha testing across Compliance department).}
-	\end{itemize}
-
-    \item
-	\ressubheading{Edgestream Partners, L.P.}{Princeton, NJ}{Software Engineer}{May 2019 - January 2021} \vspace{8pt}
-
-        As a Software Engineer on the Production team at Edgestream, my work centered around the improvement / maintenance of Edgestream's production trading system. This system is Linux-based (Red Hat) and is written primarily in Python. A few notable achievements associated with my work at Edgestream are listed below: \vspace{-4pt}
-	\begin{itemize}
-            \resitem{Integrated pylint into a codebase with well over a million lines of existing code. As the lead on this project, I was responsible for building several non-trivial tools to aid in making this integration a success.}
-            \resitem{Made several large-scale improvements to the production department's in-house testing framework/runner.}
-            \resitem{Lead developer of Edgestream's investor-facing web portal, which was built using Python's Django web framework.}
-	\end{itemize}
-
-    \item
-    \ressubheading{Comcast}{Mount Laurel, NJ}{Tier III Technical Support}{2011 - 2016} \vspace{8pt}
-
-        Tier III Technical Support at Comcast was a liaison group that worked to resolve chronic customer issues as well as outages which were impacting multiple customers. This involved troubleshooting Comcast's network to resolve the issue directly or, failing at that, escalating to the appropriate Engineering group and working with them to diagnose and resolve the issue cooperatively. Some of the other responsibilities associated with this role are listed below: \vspace{-4pt}
-    \begin{itemize}
-            \resitem{Monitored for large-scale network outages by aggregating and analyzing customer issue data from our ticketing system.} 
-            \resitem{Used Python scripting to automate frequent department tasks (e.g. parsing spreadsheets, opening/closing tickets, information retrieval).}
-    \end{itemize}
+  \short{\item Designed and launched per-inventory ad expansion and contraction rules for Ad
+        Exchange publishers (Java APIs, AngularDart UI, default-rule backfills): open beta for all
+        publishers in 2024, then extended to collapsible-anchor and collapsible-banner ads (all
+        publishers, Oct 2024).}
+  \more{\item Designed and launched per-inventory ad expansion and contraction rules for Ad
+        Exchange publishers (Java APIs, AngularDart UI, default rules backfilled for every
+        network) to an open beta for all publishers in 2024; the first exchange rule built on
+        Ad Manager's next-generation API stack.
+  \item Added collapsible-anchor and collapsible-banner controls to those rules, from closed beta
+        (May 2024) to all publishers (Oct 2024), then retired the launch flags and the legacy
+        settings they replaced.}
+  \item Migrated production API services between backend shards using read-only shadow traffic
+        and error-comparison analysis: one to 100\% of traffic (2024), a second into a staged
+        production ramp (2025--26).
+  \item Designed and built category targeting for manual creative-review protections end to end,
+        from schema and Java validation to a reusable Dart category picker; launched to a beta
+        publisher cohort (Aug 2025).
+  \more{\item Took over and shipped the bidder data-usage declarations UI (conflict badges,
+        filters, and setting suggestions across nine declaration types) to beta publishers
+        (Aug 2025).}
+  \item Served on API release on-call (four releases a week) and build-cop and bug-lead
+        rotations: triaged release-blocking alerts, rolled back bad canaries, and cherry-picked
+        fixes into new release candidates.
+  \more{\item Authored 20+ design docs and earned Java readability, Google's language-level
+        code-review certification.}
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  SKILLS                                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Skills}
+\role{Bloomberg L.P.}{Compliance SRE}{Jan 2021 -- May 2022}
+     {Site Reliability Engineer / Senior Software Engineer}{New York, NY}
 \begin{itemize}
-    \declarecommand{\sub}{m}{\item {\bf #1:}}
-    \declarecommand{\ssub}{m}{\textit{\uline{#1}}\\}
-
-    \sub{Programming Languages}\\
-        To indicate my level of proficiency with a language, I have used ``lines-of-code ($LoC$) written'' as my key metric, though I admit this provides at best an incomplete picture:
-
-        \declarecommand{\lang}{m m}{\textsc{#1} $\geq$ #2 $LoC$}
-
-        \declarecommand{\A}{}{$1,000$}
-        \declarecommand{\B}{}{$5,000$}
-        \declarecommand{\C}{}{$20,000$} 
-        \declarecommand{\D}{}{$50,000$}
-        \declarecommand{\E}{}{$100,000$}
-
-        \vspace{0.08cm}
-        \begin{tabularx}{0.9\textwidth} { >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X  >{\raggedright\arraybackslash}X }
-            \lang{Python}{\E} &
-            \lang{Bash}{\C} &
-            \lang{C/C++}{\C} \\
-            \lang{Perl}{\B} &
-            \lang{Rust}{\B} &
-            \lang{Vimscript}{\B} \\
-            \lang{Haskell}{\A} &
-            \lang{Java}{\A} &
-            \lang{Javascript}{\A} \\
-        \end{tabularx}
-
-    \sub{Frameworks} Django, FastAPI, Flask, Pluggy, ZeroMQ
-
-    \sub{Technologies} Docker, Git, \LaTeX, Linux, PostgreSQL, Redis, Vim
+  \item Founding member of the Compliance SRE team; led most of the team's software projects,
+        primarily in Python.
+  \item Created the ChangeLog Driven Release (CLDR) methodology, piloted in alpha across the
+        Compliance department.
+  \item Maintained Bloomberg's community cookiecutter, the shared starting template for new Python
+        projects.
 \end{itemize}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  OPEN SOURCE PROJECTS                                   %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\resheading{Open Source (GitHub) Projects}
-
+\role{Edgestream Partners, L.P.}{production trading team}{May 2019 -- Jan 2021}
+     {Software Engineer}{Princeton, NJ}
 \begin{itemize}
-\item \ressubheading{python-boltons/*}{Python}{Python libraries made available as ``boltons''; We think they should be ``builtins''.}{2021--present}
-    \begin{itemize}
-        \item
-            Founder and lead developer of this project / series of projects. Example bolton libraries:\vspace{-0.57cm}
-            \begin{multicols}{3}
-                \begin{itemize}
-                    \item cc-python (cookiecutter)
-                    \item clack (config CLI lib)
-                    \item eris (error-handling lib)
-                    \item hush (plugin secrets lib)
-                    \item logrus (logging lib)
-                \end{itemize}
-            \end{multicols}\vspace{-0.45cm}
-    \end{itemize}
-\item \ressubheading{bbugyi200/*}{Python, Rust, Shell}{Miscellaneous projects that I've open-sourced on GitHub.}{2017--present}
-    \begin{itemize}[noitemsep]
-        \item greatday (GTD todo manager) | Python
-        \item cldr (ChangeLog Driven Releases) | Python
-        \item shv (Shell History Viewer) | Rust, Shell
-    \end{itemize}
-\item \ressubheading{psf/black}{Python}{The uncompromising Python code formatter.}{2019--2021}
-    \begin{itemize}
-        \item
-            Improved the way black handles strings (https://github.com/psf/black/pull/1132).
-        \item
-            Non-trivial contribution consisting of $\sim$3,500 lines of code additions/modifications.
-        \item
-            Led to the closing of five unrelated GitHub issues (opened by five different developers at different times).
-    \end{itemize}
-\item \ressubheading{bbugyi200/funky}{Python, Shell}{Makes shell functions easier to define, more flexible, and more interactive.}{2017--2021}
-    \begin{itemize}
-        \item
-            Well received by the developer community (over 500 stars on GitHub).
-        \item
-            Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
-    \end{itemize}
-\item \ressubheading{bbugyi200/cookie}{Shell}{A Template-based File Generator.}{2018--2019}
-    \begin{itemize}
-        \item
-            Well received by the developer community (over 250 stars on GitHub).
-        \item
-            Multiple outside contributions have been accepted (e.g. user submitted issues/bug reports and code contributions).
-    \end{itemize}
+  \item Led the integration of pylint into a 1M+ line Python trading codebase, building the tools
+        that made the rollout succeed.
+  \item Improved the production team's in-house test framework and test runner for its
+        Linux-based trading system.
+  \more{\item Lead developer of the investor-facing web portal, built with Django.}
 \end{itemize}
+
+\more{%
+\role{Comcast}{}{2011 -- 2016}{Tier III Technical Support}{Mount Laurel, NJ}
+\begin{itemize}
+  \item Resolved chronic and multi-customer network issues with engineering teams; spotted
+        outages in ticket data and automated ticketing and spreadsheet tasks in Python.
+\end{itemize}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OPEN SOURCE
+\cvsection{Open Source}
+\begin{itemize}
+  \item \textbf{\link{https://github.com/psf/black/pull/1132}{psf/black}}
+        {\color{muted}(42K stars)}: improved long-string handling (PR \#1132,
+        +3.5K lines, merged 2020), closing five open issues.
+  \item \textbf{\link{https://github.com/bbugyi200/funky}{funky}} {\color{muted}(670+ stars)}, a
+        shell-function manager, and \textbf{\link{https://github.com/bbugyi200/cookie}{cookie}}
+        {\color{muted}(280+ stars)}, a template file generator\more{; both accepted outside
+        contributions}.
+  \more{\item Also \code{cldr} (changelog-driven releases), \code{shv} (Rust shell-history
+        viewer), and \code{python-boltons} (small Python libraries such as \code{clack} and
+        \code{logrus}).}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SKILLS
+\cvsection{Skills}
+\skill{Languages}{Python\sep Java\sep Dart\sep Rust\sep Bash\sep SQL}
+\skill{Infrastructure}{Linux\sep Git\sep GitHub Actions\sep Docker\sep PostgreSQL\sep SQLite\sep
+  Redis\sep Protocol Buffers}
+\skill{Frameworks}{AngularDart\sep Django\sep FastAPI\sep Flask\sep Textual\sep PyO3\sep pytest}
+\more{\skill{Agent tooling}{Claude Code\sep Codex\sep multi-agent orchestration\sep
+  failure triage\sep human-approval gates}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDUCATION
+\cvsection{Education}
+\role{Rutgers University}{}{2015 -- 2019}
+     {B.S. Computer Science, minor in Mathematics}{New Brunswick, NJ}
 
 \end{document}
