@@ -114,7 +114,7 @@
 \vspace{2.5pt}
 \noindent{\color{muted}\fontsize{9.4pt}{11.5pt}\selectfont
   \link{mailto:bryanbugyi34@gmail.com}{bryanbugyi34@gmail.com}\sep
-  \link{tel:+16095007081}{(609) 500-7081}\sep
+  \link{tel:+16098649328}{(609) 864-9328}\sep
   % TODO(bryan): insert your confirmed town or metro here, e.g. "Cranford, NJ (NYC metro)\sep".
   \link{https://github.com/bbugyi200}{github.com/bbugyi200}\sep
   \link{https://linkedin.com/in/bryan-bugyi}{linkedin.com/in/bryan-bugyi}\sep
@@ -128,26 +128,35 @@
 Software engineer with seven years at Google, Bloomberg, and Edgestream, focused on making
 change safe to ship: launches, shard migrations, and release on-call at Google; SRE and release
 process at Bloomberg; test and lint tooling at Edgestream. Since May 2026,
-building \textbf{sase} full-time: open-source supervision and verification for coding agents.\par
+building \textbf{sase} full-time.\par
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EXPERIENCE
 \cvsection{Experience}
 
-\role{sase}{open-source platform for coding agents}{May 2026 -- Present}
+\role{sase}{Structured Agentic Software Engineering}{May 2026 -- Present}
      {Creator \& Lead Engineer (independent, full-time)}{\link{https://sase.sh}{sase.sh}}
 \begin{itemize}
-  \item Designed one provider contract over seven coding-agent CLIs (Claude Code, Codex,
-        Antigravity, and four more); each run gets its own workspace clone, and the host, not
-        the agent, commits, opens pull requests, and records the outcome.
-  \item Built the verification layer: every check and test run becomes a durable record with a
-        normalized failure signature and a new/known/flaky/unknown verdict; ``known'' needs an
-        independent witness, and exit codes are never masked.
-  \item Wrote \code{fakey}, a deterministic fake provider that drives the real launch, streaming,
-        retry, and interrupt paths with no model calls, behind a per-commit release gate and a
-        scheduled exhaustive CI lane.
+  \short{\item Designed an open-source meta-harness for seven coding-agent CLIs (Claude Code, Codex,
+        Antigravity, and four more) under one contract; each run gets a workspace clone, and the
+        host commits and opens pull requests.}
+  \more{\item Designed an open-source meta-harness that drives seven coding-agent CLIs (Claude Code,
+        Codex, Antigravity, and four more) through one contract; each run gets its own workspace
+        clone, and the host commits and opens pull requests.}
+  \short{\item Built spec-driven VCS-agnostic planning (Git, Mercurial): reviewer decisions on plans
+        and multi-phase epics; approved epics as dependency-tracked beads for separate agents;
+        prompt macros for multi-step workflows.}
+  \more{\item Built spec-driven planning on a VCS-agnostic layer (Git and Mercurial): plans and
+        multi-phase epics carry reviewer decisions, approved epics become dependency-tracked beads
+        worked by separate agents, and prompt macros compose multi-step workflows.}
+  \item Added durable project memory (core notes inlined into every provider's instructions,
+        reference notes read on demand and audited) and typed approval gates (plans, launches,
+        sudo) answerable from the TUI, CLI, or Telegram.
   \item Moved shared logic into a required Rust core (PyO3) that also serves an authenticated
-        gateway for phones and remote machines; added typed approval gates (plans, launches, sudo)
-        answerable from the TUI, CLI, or Telegram.
+        gateway for phones and remote machines; added pluggy plugins for
+        GitHub PRs, Telegram, Neovim, and Markdown-to-MP3 audio.
+  \more{\item Built the verification layer (durable check records, normalized failure signatures,
+        new/known/flaky/unknown verdicts; exit codes are never masked) and \code{fakey}, a
+        deterministic fake provider behind a per-commit release gate.}
   \more{\item Started as a 2025 side project; 29 PyPI releases since Feb 2026 (MIT license); now
         developed day to day by agents running under sase.}
 \end{itemize}
@@ -178,8 +187,8 @@ building \textbf{sase} full-time: open-source supervision and verification for c
   \item Served on API release on-call (four releases a week) and build-cop and bug-lead
         rotations: triaged release-blocking alerts, rolled back bad canaries, and cherry-picked
         fixes into new release candidates.
-  \more{\item Authored 20+ design docs and earned Java readability, Google's language-level
-        code-review certification.}
+  \more{\item Authored 20+ approved design docs and earned Java and Dart readability, Google's
+        language-level code-review certifications.}
 \end{itemize}
 
 \role{Bloomberg L.P.}{Compliance SRE}{Jan 2021 -- May 2022}
