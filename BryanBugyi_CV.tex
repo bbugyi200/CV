@@ -77,13 +77,6 @@
   \end{tabular*}\par\nobreak
 }
 
-% Skill row with a hanging label column.
-\newcommand{\skill}[2]{%
-  \par\hangindent=1.1in\hangafter=1\noindent
-  \makebox[1.1in][l]{\bfseries\color{muted}\fontsize{9.2pt}{11pt}\selectfont #1}#2\par
-  \addvspace{\iffull 2.5pt\else 1.4pt\fi}%
-}
-
 % Bullets: a small round bullet in the accent (extracts as a real bullet character).
 \setlist[itemize]{
   label={\color{accent}\small\textbullet},
@@ -231,15 +224,6 @@ building \textbf{sase} full-time.\par
         viewer), and \code{python-boltons} (small Python libraries such as \code{clack} and
         \code{logrus}).}
 \end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SKILLS
-\cvsection{Skills}
-\skill{Languages}{Python\sep Java\sep Dart\sep Rust\sep Bash\sep SQL}
-\skill{Infrastructure}{Linux\sep Git\sep GitHub Actions\sep Docker\sep PostgreSQL\sep SQLite\sep
-  Redis\sep Protocol Buffers}
-\skill{Frameworks}{AngularDart\sep Django\sep FastAPI\sep Flask\sep Textual\sep PyO3\sep pytest}
-\more{\skill{Agent tooling}{Claude Code\sep Codex\sep multi-agent orchestration\sep
-  failure triage\sep human-approval gates}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EDUCATION
 \cvsection{Education}
